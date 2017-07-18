@@ -2,7 +2,8 @@
 import Reflux from 'reflux';
 
 var Actions = Reflux.createActions([
-  'getUsers'
+  'getUsers',
+  'getProjects'
 ]);
 
 export default Actions;

@@ -1,13 +1,13 @@
 //layout component
 import React from 'react';
-import Users from '../users/usersComponent.js';
+import SumMetrics from '../metrics/sumMetricsComponent.js';
 
 class Layout extends React.Component {
 
   render() {
     return ( 
 		 <div>
-		 	<Users />
+		 	<SumMetrics />
 		 </div>
     );
   }
