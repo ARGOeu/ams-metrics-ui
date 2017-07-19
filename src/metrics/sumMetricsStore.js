@@ -1,4 +1,3 @@
-//users store
 import sumMetricsActions from './sumMetricsActions.js';
 import Reflux from 'reflux';
 import request from 'superagent';
@@ -14,7 +13,8 @@ class SumMetricsStore extends Reflux.Store {
     this.listenables = [sumMetricsActions];
     this.state = {
       users: [],
-      projects: []
+      projects: [],
+      projectName: [],
     }
   }
 
@@ -24,11 +24,11 @@ class SumMetricsStore extends Reflux.Store {
     .set('Content-Type', 'application/json')
     .query({ key: superAdmin})
     .end((err, res) => {
-      let usersSum = 0;
+      let users = 0;
       if(err) throw err;
-      usersSum = res.body.users.length;
+      users = res.body.users;
 
-      this.setState({ users: usersSum })
+      this.setState({ users: users })
     });
   }
 
@@ -38,11 +38,18 @@ class SumMetricsStore extends Reflux.Store {
     .set('Content-Type', 'application/json')
     .query({ key: superAdmin})
     .end((err, res) => {
-      let projectsSum = 0;
+      let projects = 0;
+      let projectName = [];
       if(err) throw err;
-      projectsSum = res.body.projects.length;
+      projects = res.body.projects;
 
-      this.setState({ projects: projectsSum })
+      for (var key in projects) {
+        if (projects.hasOwnProperty(key)) {
+          projectName[key] = projects[key].name;
+        }
+      }
+
+      this.setState({ projects: projects, projectName: projectName })
     });
   }
 }
