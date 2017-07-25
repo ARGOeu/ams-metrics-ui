@@ -2,7 +2,8 @@
 import React from 'react';
 import SumMetrics from '../metrics/sumMetricsComponent.js';
 import Stats from '../statistics/statsComponent.js';
-import { Grid, Col } from 'react-bootstrap';
+import Projects from '../projects/projectsComponent.js';
+import { Col } from 'react-bootstrap';
 
 class Layout extends React.Component {
 
@@ -10,13 +11,21 @@ class Layout extends React.Component {
     return (
 		  <div>
 				<div className="container">
-					<SumMetrics />
 
 					<div className="row">
-						<Col xs={12} md={12}>
+						<SumMetrics />
+					</div>
+
+					<div className="row">
+						<Col xs={12} md={6}>
+							<Projects />
+						</Col>
+
+						<Col xs={12} md={6}>
 							<Stats />
 						</Col>
 					</div>
+
 				</div>
 			</div>
     );

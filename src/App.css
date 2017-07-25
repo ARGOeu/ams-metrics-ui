@@ -3,11 +3,12 @@
 }
 
 .panel {
+  margin-bottom: 20%;
   background-color: orange;
   border: 1% solid; 
   border-radius: 5px;
-  box-shadow: 10px 10px 5px #888888;
-  font-size: 250%;
+  box-shadow: 5px 5px 5px #888888;
+  font-size: 200%;
   font-weight: bold;
   color: white;
 }
