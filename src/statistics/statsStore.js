@@ -16,18 +16,28 @@ class StatsStore extends Reflux.Store {
   }
 
   onGetStats() {
-    request
-    .get(metrics)
-    .set('Content-Type', 'application/json')
-    .query({ key: superAdmin})
-    .end((err, res) => {
-      let stats=[{}];
-      if(err) throw err;
-      stats[0][1] = 1;
-      stats[0][2] = res.body.metrics[0].timeseries[0].value;
-      stats[0][3] = res.body.metrics[1].timeseries[0].value;
-      this.setState({ metrics: stats});
-    });
+    let metricCPU = "ams_node.cpu_usage";
+    let metricMemory = "ams_node.memory_usage";
+
+      request
+        .get(metrics)
+        .set('Content-Type', 'application/json')
+        .query({ key: superAdmin})
+        .end((err, res) => {
+          if(err) throw err;
+          let stats = {'instanceName': '', 'cpu': -0, 'memory': -0};
+          res.body.metrics.forEach(function(item) {
+            if (item.metric === metricCPU) {
+              stats.instanceName=item.resource_name;
+              stats.cpu=item.timeseries[0].value;
+            } else if (item.metric === metricMemory) {
+              stats.memory=item.timeseries[0].value;
+            }
+          })
+          let currentStats = this.state.metrics;
+          currentStats.push(stats)
+          this.setState({ metrics: currentStats })
+        });
   }
 }
 
