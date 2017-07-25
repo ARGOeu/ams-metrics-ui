@@ -14,7 +14,7 @@ class SumMetricsStore extends Reflux.Store {
     this.state = {
       users: [],
       projects: [],
-      projectName: [],
+      projectMetrics: [],
     }
   }
 
@@ -28,7 +28,7 @@ class SumMetricsStore extends Reflux.Store {
       if(err) throw err;
       users = res.body.users;
 
-      this.setState({ users: users })
+      this.setState({ users: users });
     });
   }
 
@@ -39,18 +39,44 @@ class SumMetricsStore extends Reflux.Store {
     .query({ key: superAdmin})
     .end((err, res) => {
       let projects = 0;
-      let projectName = [];
       if(err) throw err;
       projects = res.body.projects;
 
-      for (var key in projects) {
-        if (projects.hasOwnProperty(key)) {
-          projectName[key] = projects[key].name;
-        }
-      }
-
-      this.setState({ projects: projects, projectName: projectName })
+      this.getProjectMetrics(projects);
+      this.setState({ projects: projects});
     });
+  }
+
+  getProjectMetrics(projects) {
+    let metricsUrl = [];
+    let metricTopics = "project.number_of_topics";
+    let metricSubscriptions = "project.number_of_subscriptions";
+
+    for (var key in projects) {
+      if (projects.hasOwnProperty(key)) {
+        metricsUrl[key] = `https://messaging-devel.argo.grnet.gr/v1/projects/${projects[key].name}:metrics`;
+
+      request
+        .get(metricsUrl[key])
+        .set('Content-Type', 'application/json')
+        .query({ key: superAdmin})
+        .end((err, res) => {
+          if(err) throw err;
+          let metricsPerProject = {'projectName': '', 'topics': -0, 'subscriptions': -0};
+          res.body.metrics.forEach(function(item) {
+            if (item.metric === metricTopics) {
+              metricsPerProject.projectName=item.resource_name;
+              metricsPerProject.topics=item.timeseries[0].value;
+            } else if (item.metric === metricSubscriptions) {
+              metricsPerProject.subscriptions=item.timeseries[0].value;
+            }
+          })
+          let currentProjects = this.state.projectMetrics;
+          currentProjects.push(metricsPerProject)
+          this.setState({ projectMetrics: currentProjects })
+        });
+      }
+    }
   }
 }
 
