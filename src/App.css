@@ -6,9 +6,13 @@
   margin-bottom: 20%;
   background-color: orange;
   border: 1% solid; 
-  border-radius: 5px;
+  border-radius: 0px 0px 5px 5px;
   box-shadow: 5px 5px 5px #888888;
   font-size: 200%;
   font-weight: bold;
   color: white;
+}
+
+.height {
+  min-height: 800px;
 }
