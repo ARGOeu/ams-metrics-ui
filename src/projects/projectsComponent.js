@@ -11,10 +11,6 @@ class Projects extends Reflux.Component {
     this.store = sumMetricsStore;
   }
 
-  componentDidMount() {
-    sumMetricsActions.getProjects();
-  }
-
 
   render() {
     return (
