@@ -15,6 +15,7 @@ class SumMetricsStore extends Reflux.Store {
       users: [],
       projects: [],
       projectMetrics: [],
+      topicMetrics: [],
     }
   }
 
@@ -41,9 +42,11 @@ class SumMetricsStore extends Reflux.Store {
       let projects = 0;
       if(err) throw err;
       projects = res.body.projects;
+      this.setState({ projects: projects});
 
       this.getProjectMetrics(projects);
-      this.setState({ projects: projects});
+      this.getTopics(projects);
+      
     });
   }
 
@@ -77,6 +80,62 @@ class SumMetricsStore extends Reflux.Store {
         });
       }
     }
+  }
+
+  getTopics(projects) {
+    let metricsUrl = [];
+    let metricSubscriptions = "topic.number_of_subscriptions";
+    let metricMessages = "topic.number_of_messages";
+    let metricBytes = "topic.number_of_bytes";
+
+
+    for (var key in projects) {
+      if (projects.hasOwnProperty(key)) {
+        metricsUrl[key] = `https://messaging-devel.argo.grnet.gr/v1/projects/${projects[key].name}/topics`;
+      request
+        .get(metricsUrl[key])
+        .set('Content-Type', 'application/json')
+        .query({ key: superAdmin})
+        .end((err, res) => {
+          if(err) throw err;
+          if (res.body.hasOwnProperty('topics')) {
+            let topicsName = res.body.topics[0].name;
+            this.getTopicMetrics(topicsName);
+          }
+        });
+      }
+    }
+  }
+
+  getTopicMetrics(topicsName) {
+    let topicSubscriptions = "topic.number_of_subscriptions";
+    let topicMessages = "topic.number_of_messages";
+    let topicBytes = "topic.number_of_bytes";
+      
+     let topicsUrl = `https://messaging-devel.argo.grnet.gr/v1/${topicsName}:metrics`;
+
+      request
+        .get(topicsUrl)
+        .set('Content-Type', 'application/json')
+        .query({ key: superAdmin})
+        .end((err, res) => {
+          if(err) throw err;
+          
+          let metricsPerTopic = {'topictName': '', 'subscriptions': -0, 'messages': -0, 'bytes': 0};
+          res.body.metrics.forEach(function(item) {
+            if (item.metric === topicSubscriptions) {
+              metricsPerTopic.topictName=item.resource_name;
+              metricsPerTopic.subscriptions=item.timeseries[0].value;
+            } else if (item.metric === topicMessages) {
+              metricsPerTopic.messages=item.timeseries[0].value;
+            } else if (item.metric === topicBytes) {
+              metricsPerTopic.bytes=item.timeseries[0].value;
+            }
+          })
+          let currentTopics = this.state.topicMetrics;
+          currentTopics.push(metricsPerTopic);
+          this.setState({ topicMetrics: currentTopics });
+        });
   }
 }
 
