@@ -13,7 +13,7 @@ class SumMetrics extends Reflux.Component {
 
   componentDidMount() {
     sumMetricsActions.getUsers();
-    //sumMetricsActions.getProjects();
+    sumMetricsActions.getProjects();
   }
 
   render() {
