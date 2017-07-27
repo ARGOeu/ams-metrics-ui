@@ -18,7 +18,7 @@ class Projects extends Reflux.Component {
 
   render() {
     return (
-      <BootstrapTable data={ this.state.projectMetrics } keyField='projectName' search>
+      <BootstrapTable data={ this.state.projectMetrics } keyField='projectName' search pagination>
         <TableHeaderColumn dataField='projectName'>Project Name</TableHeaderColumn>
         <TableHeaderColumn dataField='topics' dataAlign='center'>Topics</TableHeaderColumn>
         <TableHeaderColumn dataField='subscriptions'dataAlign='center'>Subscriptions</TableHeaderColumn>
