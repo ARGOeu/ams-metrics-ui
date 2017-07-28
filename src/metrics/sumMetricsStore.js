@@ -23,7 +23,7 @@ class SumMetricsStore extends Reflux.Store {
     request
     .get(users)
     .set('Content-Type', 'application/json')
-    .query({ key: superAdmin})
+    .query({ key: superAdmin })
     .end((err, res) => {
       let users = 0;
       if(err) throw err;
@@ -37,12 +37,12 @@ class SumMetricsStore extends Reflux.Store {
     request
     .get(projects)
     .set('Content-Type', 'application/json')
-    .query({ key: superAdmin})
+    .query({ key: superAdmin })
     .end((err, res) => {
       let projects = 0;
       if(err) throw err;
       projects = res.body.projects;
-      this.setState({ projects: projects});
+      this.setState({ projects: projects });
 
       this.getProjectMetrics(projects);
       this.getTopics(projects);
@@ -62,10 +62,10 @@ class SumMetricsStore extends Reflux.Store {
       request
         .get(metricsUrl[key])
         .set('Content-Type', 'application/json')
-        .query({ key: superAdmin})
+        .query({ key: superAdmin })
         .end((err, res) => {
           if(err) throw err;
-          let metricsPerProject = {'projectName': '', 'topics': -0, 'subscriptions': -0};
+          let metricsPerProject = { 'projectName': '', 'topics': -0, 'subscriptions': -0 };
           res.body.metrics.forEach(function(item) {
             if (item.metric === metricTopics) {
               metricsPerProject.projectName=item.resource_name;
@@ -95,7 +95,7 @@ class SumMetricsStore extends Reflux.Store {
       request
         .get(metricsUrl[key])
         .set('Content-Type', 'application/json')
-        .query({ key: superAdmin})
+        .query({ key: superAdmin })
         .end((err, res) => {
           if(err) throw err;
           if (res.body.hasOwnProperty('topics')) {
@@ -117,11 +117,11 @@ class SumMetricsStore extends Reflux.Store {
       request
         .get(topicsUrl)
         .set('Content-Type', 'application/json')
-        .query({ key: superAdmin})
+        .query({ key: superAdmin })
         .end((err, res) => {
           if(err) throw err;
           
-          let metricsPerTopic = {'topictName': '', 'subscriptions': -0, 'messages': -0, 'bytes': 0};
+          let metricsPerTopic = { 'topictName': '', 'subscriptions': -0, 'messages': -0, 'bytes': 0 };
           res.body.metrics.forEach(function(item) {
             if (item.metric === topicSubscriptions) {
               metricsPerTopic.topictName=item.resource_name;
