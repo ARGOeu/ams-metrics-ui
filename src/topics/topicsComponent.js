@@ -17,8 +17,8 @@ class Topics extends Reflux.Component {
       <BootstrapTable data={ this.state.topicMetrics } keyField='projectName' search pagination>
         <TableHeaderColumn dataField='topictName'>Topic Name</TableHeaderColumn>
         <TableHeaderColumn dataField='subscriptions' dataAlign='center'>Subscriptions</TableHeaderColumn>
-        <TableHeaderColumn dataField='messages'dataAlign='center'>Messages</TableHeaderColumn>
-        <TableHeaderColumn dataField='bytes'dataAlign='center'>Bytes</TableHeaderColumn>
+        <TableHeaderColumn dataField='messages' dataAlign='center'>Messages</TableHeaderColumn>
+        <TableHeaderColumn dataField='bytes' dataAlign='center'>Bytes</TableHeaderColumn>
       </BootstrapTable>
     );
   }
