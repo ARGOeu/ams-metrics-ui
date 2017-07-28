@@ -21,31 +21,30 @@ class SumMetricsStore extends Reflux.Store {
 
   onGetUsers() {
     request
-    .get(users)
-    .set('Content-Type', 'application/json')
-    .query({ key: superAdmin })
-    .end((err, res) => {
-      if(err) throw err;
-      const users = ('users' in res.body) ? res.body.users : [];
-
-      this.setState({ users });
-    });
+      .get(users)
+      .set('Content-Type', 'application/json')
+      .query({ key: superAdmin })
+      .end((err, res) => {
+        if(err) throw err;
+        const users = ('users' in res.body) ? res.body.users : [];
+        this.setState({ users });
+      });
   }
 
   onGetProjects() {
     request
-    .get(projects)
-    .set('Content-Type', 'application/json')
-    .query({ key: superAdmin })
-    .end((err, res) => {
-      if(err) throw err;
-      const projects = ('projects' in res.body) ? res.body.projects : [];
-      this.setState({ projects });
+      .get(projects)
+      .set('Content-Type', 'application/json')
+      .query({ key: superAdmin })
+      .end((err, res) => {
+        if(err) throw err;
+        const projects = ('projects' in res.body) ? res.body.projects : [];
+        this.setState({ projects });
 
-      this.getProjectMetrics(projects);
-      this.getTopics(projects);
-      
-    });
+        this.getProjectMetrics(projects);
+        this.getTopics(projects);
+        
+      });
   }
 
   getProjectMetrics(projects) {
@@ -53,56 +52,57 @@ class SumMetricsStore extends Reflux.Store {
     let metricTopics = "project.number_of_topics";
     let metricSubscriptions = "project.number_of_subscriptions";
 
-    for (var key in projects) {
-      if (projects.hasOwnProperty(key)) {
+    projects
+      .filter((project) => {
+        return ('name' in project);
+      })
+      .forEach((project, key) => {
         metricsUrl[key] = `https://messaging-devel.argo.grnet.gr/v1/projects/${projects[key].name}:metrics`;
 
-      request
-        .get(metricsUrl[key])
-        .set('Content-Type', 'application/json')
-        .query({ key: superAdmin })
-        .end((err, res) => {
-          if(err) throw err;
-          let metricsPerProject = { 'projectName': '', 'topics': -0, 'subscriptions': -0 };
-          res.body.metrics.forEach(function(item) {
-            if (item.metric === metricTopics) {
-              metricsPerProject.projectName=item.resource_name;
-              metricsPerProject.topics=item.timeseries[0].value;
-            } else if (item.metric === metricSubscriptions) {
-              metricsPerProject.subscriptions=item.timeseries[0].value;
-            }
-          })
-          let currentProjects = this.state.projectMetrics;
-          currentProjects.push(metricsPerProject)
-          this.setState({ projectMetrics: currentProjects })
-        });
-      }
-    }
+        request
+          .get(metricsUrl[key])
+          .set('Content-Type', 'application/json')
+          .query({ key: superAdmin })
+          .end((err, res) => {
+            if(err) throw err;
+            let metricsPerProject = { 'projectName': '', 'topics': 0, 'subscriptions': 0 };
+            res.body.metrics.forEach(function(item) {
+              if (item.metric === metricTopics) {
+                metricsPerProject.projectName=item.resource_name;
+                metricsPerProject.topics=item.timeseries[0].value;
+              } else if (item.metric === metricSubscriptions) {
+                metricsPerProject.subscriptions=item.timeseries[0].value;
+              }
+            })
+            let { projectMetrics } = this.state;
+            projectMetrics.push(metricsPerProject);
+            this.setState({ projectMetrics });
+          });
+      });
   }
 
   getTopics(projects) {
     let metricsUrl = [];
-    let metricSubscriptions = "topic.number_of_subscriptions";
-    let metricMessages = "topic.number_of_messages";
-    let metricBytes = "topic.number_of_bytes";
 
-
-    for (var key in projects) {
-      if (projects.hasOwnProperty(key)) {
+    projects
+      .filter((project) => {
+        return ('name' in project);
+      })
+      .forEach((project, key) => {
         metricsUrl[key] = `https://messaging-devel.argo.grnet.gr/v1/projects/${projects[key].name}/topics`;
-      request
-        .get(metricsUrl[key])
-        .set('Content-Type', 'application/json')
-        .query({ key: superAdmin })
-        .end((err, res) => {
-          if(err) throw err;
-          if (res.body.hasOwnProperty('topics')) {
-            let topicsName = res.body.topics[0].name;
-            this.getTopicMetrics(topicsName);
-          }
-        });
-      }
-    }
+
+        request
+          .get(metricsUrl[key])
+          .set('Content-Type', 'application/json')
+          .query({ key: superAdmin })
+          .end((err, res) => {
+            if(err) throw err;
+            if (res.body.hasOwnProperty('topics')) {
+              let topicsName = res.body.topics[0].name;
+              this.getTopicMetrics(topicsName);
+            }
+          });
+      });
   }
 
   getTopicMetrics(topicsName) {
@@ -118,8 +118,7 @@ class SumMetricsStore extends Reflux.Store {
         .query({ key: superAdmin })
         .end((err, res) => {
           if(err) throw err;
-          
-          let metricsPerTopic = { 'topictName': '', 'subscriptions': -0, 'messages': -0, 'bytes': 0 };
+          let metricsPerTopic = { 'topictName': '', 'subscriptions': 0, 'messages': 0, 'bytes': 0 };
           res.body.metrics.forEach(function(item) {
             if (item.metric === topicSubscriptions) {
               metricsPerTopic.topictName=item.resource_name;
@@ -130,9 +129,9 @@ class SumMetricsStore extends Reflux.Store {
               metricsPerTopic.bytes=item.timeseries[0].value;
             }
           })
-          let currentTopics = this.state.topicMetrics;
-          currentTopics.push(metricsPerTopic);
-          this.setState({ topicMetrics: currentTopics });
+          let { topicMetrics } = this.state;
+          topicMetrics.push(metricsPerTopic);
+          this.setState({ topicMetrics });
         });
   }
 }

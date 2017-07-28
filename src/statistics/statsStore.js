@@ -34,9 +34,9 @@ class StatsStore extends Reflux.Store {
               stats.memory=item.timeseries[0].value;
             }
           })
-          let currentStats = this.state.metrics;
-          currentStats.push(stats)
-          this.setState({ metrics: currentStats })
+          let { metrics } = this.state;
+          metrics.push(stats);
+          this.setState({ metrics });
         });
   }
 }
