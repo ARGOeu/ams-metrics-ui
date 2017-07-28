@@ -25,11 +25,10 @@ class SumMetricsStore extends Reflux.Store {
     .set('Content-Type', 'application/json')
     .query({ key: superAdmin })
     .end((err, res) => {
-      let users = 0;
       if(err) throw err;
-      users = res.body.users;
+      const users = ('users' in res.body) ? res.body.users : [];
 
-      this.setState({ users: users });
+      this.setState({ users });
     });
   }
 
@@ -39,10 +38,9 @@ class SumMetricsStore extends Reflux.Store {
     .set('Content-Type', 'application/json')
     .query({ key: superAdmin })
     .end((err, res) => {
-      let projects = 0;
       if(err) throw err;
-      projects = res.body.projects;
-      this.setState({ projects: projects });
+      const projects = ('projects' in res.body) ? res.body.projects : [];
+      this.setState({ projects });
 
       this.getProjectMetrics(projects);
       this.getTopics(projects);
