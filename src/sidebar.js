@@ -12,10 +12,10 @@ const Sidebar = () => (
     <div>
       <div style={{ width: '15%', background: '#f0f0f0' }}>
         <ul style={{ listStyleType: 'none', padding: 0 }}>
-          <Button block><Link to="/projects" style={{ textDecoration: 'none', display: 'block' }}>Projects</Link></Button>
-          <Button block><Link to="/topics" style={{ textDecoration: 'none', display: 'block' }}>Topics</Link></Button>
-          <Button block><Link to="/statistics" style={{ textDecoration: 'none', display: 'block' }}>Operational Statistics</Link></Button>
-          <Button block><Link to="/users" style={{ textDecoration: 'none', display: 'block' }}>Users</Link></Button>
+          <Button block bsStyle="warning"><Link to="/projects" className='button-link' style={{ textDecoration: 'none', display: 'block' }}>Projects</Link></Button>
+          <Button block bsStyle="warning"><Link to="/topics" className='button-link' style={{ textDecoration: 'none', display: 'block' }}>Topics</Link></Button>
+          <Button block bsStyle="warning"><Link to="/statistics" className='button-link' style={{ textDecoration: 'none', display: 'block' }}>Operational Statistics</Link></Button>
+          <Button block bsStyle="warning"><Link to="/users" className='button-link' style={{ textDecoration: 'none', display: 'block' }}>Users</Link></Button>
         </ul>
       </div>
         <div className="container height">
@@ -24,7 +24,7 @@ const Sidebar = () => (
               <Route exact path="/projects" component={Projects}/>
             </Col>
           </Row>
-          
+
           <Row>
             <Col xs={12} md={12}>
               <Route exact path="/statistics" component={Stats}/>

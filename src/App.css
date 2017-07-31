@@ -16,3 +16,11 @@
 .height {
   min-height: 800px;
 }
+
+.button-link {
+  text-decoration: none;
+  display: block;
+  color: white;
+  font-size: 100%;
+  font-weight: bold;
+}
