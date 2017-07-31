@@ -19,10 +19,10 @@ class SumMetrics extends Reflux.Component {
   render() {
     return (
       <div>
-        <Col xs={12} md={3} mdPush={6}>
+        <Col xs={3} md={3} mdPush={6}>
           <div className="panel">Users { this.state.users.length }</div>
         </Col>
-        <Col xs={12} md={3} mdPush={6}>
+        <Col xs={3} md={3} mdPush={6}>
           <div className="panel">Projects { this.state.projects.length }</div>
         </Col>
       </div>
