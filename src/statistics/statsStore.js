@@ -25,7 +25,7 @@ class StatsStore extends Reflux.Store {
         .query({ key: superAdmin })
         .end((err, res) => {
           if(err) throw err;
-          let stats = { 'instanceName': '', 'cpu': -0, 'memory': -0 };
+          let stats = { instanceName: '', cpu: 0, memory: 0 };
           res.body.metrics.forEach(function(item) {
             if (item.metric === metricCPU) {
               stats.instanceName=item.resource_name;
