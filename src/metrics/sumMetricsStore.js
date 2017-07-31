@@ -16,6 +16,7 @@ class SumMetricsStore extends Reflux.Store {
       projects: [],
       projectMetrics: [],
       topicMetrics: [],
+      userMetrics: []
     }
   }
 
@@ -51,6 +52,9 @@ class SumMetricsStore extends Reflux.Store {
     let metricsUrl = [];
     let metricTopics = "project.number_of_topics";
     let metricSubscriptions = "project.number_of_subscriptions";
+    let userMetricSubscriptions = "project.user.number_of_subscriptions";
+    let userMetricTopics = "project.user.number_of_topics";
+
 
     projects
       .filter((project) => {
@@ -65,18 +69,31 @@ class SumMetricsStore extends Reflux.Store {
           .query({ key: superAdmin })
           .end((err, res) => {
             if(err) throw err;
-            let metricsPerProject = { 'projectName': '', 'topics': 0, 'subscriptions': 0 };
+            let metricsPerProject = { projectName: '', topics: 0, subscriptions: 0 };
+            let metricsPerUser = { projectName: '', topics: 0, subscriptions: 0 };
             res.body.metrics.forEach(function(item) {
               if (item.metric === metricTopics) {
                 metricsPerProject.projectName=item.resource_name;
                 metricsPerProject.topics=item.timeseries[0].value;
               } else if (item.metric === metricSubscriptions) {
                 metricsPerProject.subscriptions=item.timeseries[0].value;
+              } else if (item.metric === userMetricSubscriptions) {
+                metricsPerUser.userName=item.resource_name;
+                metricsPerUser.subscriptions=item.timeseries[0].value;
+              } else if (item.metric === userMetricTopics) {
+                metricsPerUser.userName=item.resource_name;
+                metricsPerUser.topics=item.timeseries[0].value;
               }
             })
             let { projectMetrics } = this.state;
             projectMetrics.push(metricsPerProject);
             this.setState({ projectMetrics });
+
+            let { userMetrics } = this.state;
+            if (metricsPerUser.hasOwnProperty('userName')) {
+              userMetrics.push(metricsPerUser);
+            }
+            this.setState({ userMetrics });
           });
       });
   }
@@ -118,7 +135,7 @@ class SumMetricsStore extends Reflux.Store {
         .query({ key: superAdmin })
         .end((err, res) => {
           if(err) throw err;
-          let metricsPerTopic = { 'topictName': '', 'subscriptions': 0, 'messages': 0, 'bytes': 0 };
+          let metricsPerTopic = { topictName: '', subscriptions: 0, messages: 0, bytes: 0 };
           res.body.metrics.forEach(function(item) {
             if (item.metric === topicSubscriptions) {
               metricsPerTopic.topictName=item.resource_name;
