@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import Stats from './statistics/statsComponent.js';
 import Projects from './projects/projectsComponent.js';
 import Topics from './topics/topicsComponent.js';
@@ -12,10 +12,10 @@ const Sidebar = () => (
     <div>
       <div style={{ width: '15%', background: '#f0f0f0' }}>
         <ul style={{ listStyleType: 'none', padding: 0 }}>
-          <Button block bsStyle="warning"><Link to="/projects" className='button-link' style={{ textDecoration: 'none', display: 'block' }}>Projects</Link></Button>
-          <Button block bsStyle="warning"><Link to="/topics" className='button-link' style={{ textDecoration: 'none', display: 'block' }}>Topics</Link></Button>
-          <Button block bsStyle="warning"><Link to="/statistics" className='button-link' style={{ textDecoration: 'none', display: 'block' }}>Operational Statistics</Link></Button>
-          <Button block bsStyle="warning"><Link to="/users" className='button-link' style={{ textDecoration: 'none', display: 'block' }}>Users</Link></Button>
+          <Button block bsStyle="warning"><NavLink to="/projects" activeClassName="selected" className='button-link' style={{ textDecoration: 'none', display: 'block' }}>Projects</NavLink></Button>
+          <Button block bsStyle="warning"><NavLink to="/topics" activeClassName="selected" className='button-link' style={{ textDecoration: 'none', display: 'block' }}>Topics</NavLink></Button>
+          <Button block bsStyle="warning"><NavLink to="/statistics" activeClassName="selected" className='button-link' style={{ textDecoration: 'none', display: 'block' }}>Operational Statistics</NavLink></Button>
+          <Button block bsStyle="warning"><NavLink to="/users" activeClassName="selected" className='button-link' style={{ textDecoration: 'none', display: 'block' }}>Users</NavLink></Button>
         </ul>
       </div>
         <div className="container height">

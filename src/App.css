@@ -24,3 +24,8 @@
   font-size: 100%;
   font-weight: bold;
 }
+
+.selected {
+  font-weight: bold;
+  color: #5f8dc9;
+}
