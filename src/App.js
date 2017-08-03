@@ -2,15 +2,24 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './static/header.js';
 import Footer from './static/footer.js';
+import Login from './login/loginComponent.js';
 import Layout from './layout/layout.js';
+import Reflux from 'reflux';
+import loginStore from './login/loginStore.js';
 
+class App extends Reflux.Component {
 
-class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {userInfo: []};
+    this.store = loginStore;
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
-        <Layout />
+        { this.state.userInfo.length === 0 ? <Login /> : <Layout /> }
         <Footer />
       </div>
     );
