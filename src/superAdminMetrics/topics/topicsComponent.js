@@ -1,5 +1,5 @@
 import React from 'react';
-import sumMetricsStore from '../metrics/sumMetricsStore.js';
+import sumMetricsStore from '../../metrics/sumMetricsStore.js';
 import Reflux from 'reflux';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
