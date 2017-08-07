@@ -10,7 +10,10 @@ class StatsStore extends Reflux.Store {
     super();
     this.listenables = [loginActions];
     this.state = {
+      value: '',
       userInfo: [],
+      user: {},
+      isNotAdmin: false
     }
   }
 
@@ -23,17 +26,11 @@ class StatsStore extends Reflux.Store {
         .query({ key: superAdmin })
         .end((err, res) => {
           if(err) throw err;
-          let user = [];
-
-          if(res.body.service_roles.length == 0) {
-            res.body.projects.forEach(function(item) {
-              user.push(item);
-            })
+          this.setState({ user: res.body })
+          this.setState({ userInfo: ('projects' in res.body) ? res.body.projects : [] });
+          if(res.body.service_roles.length === 0) {
+            this.setState({ isNotAdmin : true });
           }
-
-          let { userInfo } = this.state;
-          userInfo.push(user);
-          this.setState({ userInfo });
         });
   }
 }
