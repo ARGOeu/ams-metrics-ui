@@ -11,7 +11,6 @@ class App extends Reflux.Component {
 
   constructor(props) {
     super(props);
-    this.state = {userInfo: []};
     this.store = loginStore;
   }
 
@@ -19,7 +18,7 @@ class App extends Reflux.Component {
     return (
       <div className="App">
         <Header />
-        { this.state.userInfo.length === 0 ? <Login /> : <Layout /> }
+        <Layout />
         <Footer />
       </div>
     );
