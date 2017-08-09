@@ -4,9 +4,6 @@ import SumMetrics from './metrics/sumMetricsComponent.js';
 import Sidebar from './sidebar.js';
 
 class Admin extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (

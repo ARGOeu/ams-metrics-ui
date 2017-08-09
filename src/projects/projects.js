@@ -1,6 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-import { Col, Row, Button } from 'react-bootstrap';
 import loginStore from '../login/loginStore.js';
 import Reflux from 'reflux';
 import ProjectMenuItem from './projectMenuItem.js';
