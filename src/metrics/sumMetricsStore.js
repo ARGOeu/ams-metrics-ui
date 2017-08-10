@@ -115,8 +115,10 @@ class SumMetricsStore extends Reflux.Store {
           .end((err, res) => {
             if(err) throw err;
             if (res.body.hasOwnProperty('topics')) {
-              let topicsName = res.body.topics[0].name;
-              this.getTopicMetrics(topicsName);
+              res.body.topics.forEach((topic) => {
+                let topicsName = topic.name;
+                this.getTopicMetrics(topicsName);
+              })
             }
           });
       });

@@ -42,31 +42,34 @@ class ProjectsStore extends Reflux.Store {
         .end((err, res) => {
           if(err) throw err;
             let metricsPerProject = { projectName: '', topics: 0, subscriptions: 0 };
-            let metricsPerUser = { projectName: '', topics: 0, subscriptions: 0 };
+            let metricsPerUser = { userName: '', topics: 0, subscriptions: 0 };
 
-            res.body.metrics.forEach(function(item) {
+            res.body.metrics.forEach((item) => {
               if (item.metric === metricTopics) {
                 metricsPerProject.projectName=item.resource_name;
-                metricsPerProject.topics=item.timeseries[0].value; 
+                metricsPerProject.topics=item.timeseries[0].value;
               } else if (item.metric === metricSubscriptions) {
                 metricsPerProject.subscriptions=item.timeseries[0].value;
               } else if (item.metric === userMetricSubscriptions) {
                 metricsPerUser.userName=item.resource_name;
                 metricsPerUser.subscriptions=item.timeseries[0].value;
+                metricsPerUser.topics=0;
               } else if (item.metric === userMetricTopics) {
                 metricsPerUser.userName=item.resource_name;
                 metricsPerUser.topics=item.timeseries[0].value;
+                metricsPerUser.subscriptions=0;
               }
             })
+
             let { projectMetrics } = this.state;
             projectMetrics.push(metricsPerProject);
             this.setState({ projectMetrics });
 
             let { userMetrics } = this.state;
-            if (metricsPerUser.hasOwnProperty('userName')) {
+            if (metricsPerUser.hasOwnProperty('userName') && metricsPerUser['userName']) {
               userMetrics.push(metricsPerUser);
+              this.setState({ userMetrics });
             }
-            this.setState({ userMetrics });
         });
   }
 
@@ -80,8 +83,10 @@ class ProjectsStore extends Reflux.Store {
       .end((err, res) => {
         if(err) throw err;
         if (res.body.hasOwnProperty('topics')) {
-          let topicsName = res.body.topics[0].name;
-          this.getTopicMetrics(token, role, topicsName);
+          res.body.topics.forEach((topic) => {
+            let topicsName = topic.name;
+            this.getTopicMetrics(token, role, topicsName);
+          })
         }
       });
   }
@@ -126,8 +131,10 @@ class ProjectsStore extends Reflux.Store {
       .end((err, res) => {
         if(err) throw err;
         if (res.body.hasOwnProperty('subscriptions')) {
-          let subscriptionsName = res.body.subscriptions[0].name;
-          this.getSubscriptionsMetrics(token, role, subscriptionsName);
+          res.body.subscriptions.forEach((subscription) => {
+            let subscriptionsName = subscription.name;
+            this.getSubscriptionsMetrics(token, role, subscriptionsName);
+          })
         }
       });
   }
