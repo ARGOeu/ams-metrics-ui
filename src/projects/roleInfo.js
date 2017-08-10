@@ -32,6 +32,7 @@ class RoleInfo extends Reflux.Component {
           <Table tableType='projectMetrics' data={this.state.projectMetrics}/>
           <Table tableType='userMetrics' data={this.state.userMetrics}/>
           <Table tableType='topicMetrics' data={this.state.topicMetrics}/>
+          <Table tableType='subscriptionMetrics' data={this.state.subscriptionMetrics}/>
         </div>
       )
     } else if (role === "publisher") {
