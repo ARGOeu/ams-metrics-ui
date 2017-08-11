@@ -1,5 +1,4 @@
 import React from 'react'
-// import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import projectsStore from './projectsStore';
 import loginStore from '../login/loginStore';
 import projectsActions from './projectsActions.js';
@@ -27,10 +26,18 @@ class RoleInfo extends Reflux.Component {
     let content;
 
     if (role === "project_admin") {
+      let metrics = [];
+      metrics.push(<Table tableType='projectMetrics' layout='simple' data={[this.state.projectMetric]}/>);
+
+      Object.keys(this.state.defaultMetrics).forEach((metric_type) => {
+        metrics.push(<Table tableType={metric_type} data={this.state.defaultMetrics[metric_type]} />)
+      });
+
       content = (
         <div>
-          <Table tableType='projectMetrics' data={this.state.projectMetrics}/>
-          <Table tableType='userMetrics' data={this.state.userMetrics}/>
+          { metrics.map((metric) => {
+            return metric;
+          }) }
           <Table tableType='topicMetrics' data={this.state.topicMetrics}/>
           <Table tableType='subscriptionMetrics' data={this.state.subscriptionMetrics}/>
         </div>
@@ -50,7 +57,7 @@ class RoleInfo extends Reflux.Component {
 
   render() {
     return (
-      <div style={{marginTop:'5%'}}>
+      <div>
         { this.renderTable() }
       </div>
     );

@@ -1,15 +1,15 @@
 import projectsActions from './projectsActions.js';
 import Reflux from 'reflux';
 import request from 'superagent';
-
+import { groupBy, chain, find } from 'lodash';
 
 class ProjectsStore extends Reflux.Store {
   constructor() {
     super();
     this.listenables = [projectsActions];
     this.state = {
-      projectMetrics: [],
-      userMetrics: [],
+      projectMetric: {},
+      defaultMetrics: {},
       topicMetrics: [],
       subscriptionMetrics: []
     }
@@ -30,46 +30,64 @@ class ProjectsStore extends Reflux.Store {
   getProjectMetrics(token, role, projectName, user) {
     let metrics = `https://messaging-devel.argo.grnet.gr/v1/projects/${projectName}:metrics`;
 
-    let metricTopics = "project.number_of_topics";
-    let metricSubscriptions = "project.number_of_subscriptions";
-    let userMetricSubscriptions = "project.user.number_of_subscriptions";
-    let userMetricTopics = "project.user.number_of_topics";
-
       request
         .get(metrics)
         .set('Content-Type', 'application/json')
         .query({ key: token })
         .end((err, res) => {
           if(err) throw err;
-            let metricsPerProject = { projectName: '', topics: 0, subscriptions: 0 };
-            let metricsPerUser = { userName: '', topics: 0, subscriptions: 0 };
 
-            res.body.metrics.forEach((item) => {
-              if (item.metric === metricTopics) {
-                metricsPerProject.projectName=item.resource_name;
-                metricsPerProject.topics=item.timeseries[0].value;
-              } else if (item.metric === metricSubscriptions) {
-                metricsPerProject.subscriptions=item.timeseries[0].value;
-              } else if (item.metric === userMetricSubscriptions) {
-                metricsPerUser.userName=item.resource_name;
-                metricsPerUser.subscriptions=item.timeseries[0].value;
-                metricsPerUser.topics=0;
-              } else if (item.metric === userMetricTopics) {
-                metricsPerUser.userName=item.resource_name;
-                metricsPerUser.topics=item.timeseries[0].value;
-                metricsPerUser.subscriptions=0;
-              }
+            //group metrics by resource type (currently project and project.user)
+            let groups = groupBy(res.body.metrics, (metric) => { return metric.resource_type; });
+
+            //project
+            let projectMetric = { name: projectName };
+            //generate project metrics data dunamically (currently topics and subscriptions)
+            groups.project.forEach((metric) => {
+              projectMetric[metric.metric.split(metric.resource_type + '.')[1]] = (metric.timeseries.length > 0) ? metric.timeseries[0].value : 0;
             })
 
-            let { projectMetrics } = this.state;
-            projectMetrics.push(metricsPerProject);
-            this.setState({ projectMetrics });
+            //remove project in order to iterate the rest of metrics
+            delete groups['project'];
 
-            let { userMetrics } = this.state;
-            if (metricsPerUser.hasOwnProperty('userName') && metricsPerUser['userName']) {
-              userMetrics.push(metricsPerUser);
-              this.setState({ userMetrics });
-            }
+            let defaultMetrics = {};
+            //iterate metrics
+            Object.keys(groups).map((group) => {
+              //store each table row inside usersMetric
+              let usersMetric = [];
+              //group users by resource name field
+              const users = groupBy(groups[group], (metric) => {
+                return metric.resource_name.split(projectName + '.')[1];
+              })
+
+              //get all available metrics (table columns)
+              const available_metrics = chain(groups[group])
+                .map((metric) => {
+                  return metric.metric.split(metric.resource_type + '.')[1];
+                })
+                .uniq()
+                .value();
+
+              //generate user metrics table rows dynamically
+              Object.keys(users).forEach((username) => {
+                let user_row = {};
+                user_row['username'] = username;
+
+                available_metrics.forEach((metric_type) => {
+                  //if found, take metric value or 0
+                  const found = users[username].find((metric) => { return (metric.metric.split(metric.resource_type + '.')[1] === metric_type)});
+                  if(found) {
+                    user_row[metric_type] = (found.timeseries.length > 0) ? found.timeseries[0].value : 0;
+                  } else {
+                    user_row[metric_type] = 0;
+                  }
+                });
+                usersMetric.push(user_row);
+              })
+              defaultMetrics[group] = usersMetric;
+            })
+
+            this.setState({ projectMetric, defaultMetrics });
         });
   }
 
@@ -95,7 +113,7 @@ class ProjectsStore extends Reflux.Store {
     let topicSubscriptions = "topic.number_of_subscriptions";
     let topicMessages = "topic.number_of_messages";
     let topicBytes = "topic.number_of_bytes";
-      
+
      let topicsUrl = `https://messaging-devel.argo.grnet.gr/v1/${topicsName}:metrics`;
 
       request
@@ -142,7 +160,7 @@ class ProjectsStore extends Reflux.Store {
   getSubscriptionsMetrics(token, role, subscriptionsName) {
     let subscriptionMessages = "subscription.number_of_messages";
     let subscriptionBytes = "subscription.number_of_bytes";
-      
+
      let subscriptionsUrl = `https://messaging-devel.argo.grnet.gr/v1/${subscriptionsName}:metrics`;
 
       request
