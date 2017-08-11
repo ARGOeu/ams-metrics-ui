@@ -5,29 +5,29 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 const tablesInfo = {
   projectMetrics: [
     {
-      key: 'projectName',
+      key: 'name',
       label: 'Project Name'
     },
     {
-      key: 'topics',
+      key: 'number_of_topics',
       label: 'Topics'
     },
     {
-      key: 'subscriptions',
+      key: 'number_of_subscriptions',
       label: 'Subscriptions'
     }
   ],
-  userMetrics: [
+  'project.user': [
     {
-      key: 'userName',
+      key: 'username',
       label: 'User Name'
     },
     {
-      key: 'topics',
+      key: 'number_of_topics',
       label: 'Topics'
     },
     {
-      key: 'subscriptions',
+      key: 'number_of_subscriptions',
       label: 'Subscriptions'
     }
   ],
@@ -75,14 +75,17 @@ class Table extends Reflux.Component {
   }
 
   render() {
+    const layout = (this.props.layout && this.props.layout === 'simple') ? false : true;
     return (
-      <BootstrapTable data={ this.props.data } search pagination keyField={tablesInfo[this.props.tableType][0].key}>
-        {
-          tablesInfo[this.props.tableType].map((col) => {
-            return this.renderCol(col);
-          })
-        }
-      </BootstrapTable>
+      <div style={{marginTop:'5%'}}>
+        <BootstrapTable data={ this.props.data } search={layout} pagination={layout} keyField={tablesInfo[this.props.tableType][0].key}>
+          {
+            tablesInfo[this.props.tableType].map((col) => {
+              return this.renderCol(col);
+            })
+          }
+        </BootstrapTable>
+      </div>
   )}
 }
 
