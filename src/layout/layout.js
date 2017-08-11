@@ -4,9 +4,14 @@ import ProjectsItem from '../projects/projectsItem.js';
 import loginStore from '../login/loginStore.js';
 import Login from '../login/loginComponent.js';
 import Reflux from 'reflux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Admin from '../admin.js';
 
+const NoMatch = () => {
+  return (
+    <Redirect to='/login' />
+  )
+}
 
 class Layout extends Reflux.Component {
   constructor(props) {
@@ -14,13 +19,23 @@ class Layout extends Reflux.Component {
     this.store = loginStore;
   }
 
+  userLogged() {
+    return (this.state.user && this.state.user.token);
+  }
+
   render() {
     return (
       <Switch>
         <Route path="/login" component={Login} />
-        <Route exact path="/projects" component={ProjectsTab} />
-        <Route path="/projects/:project_name" component={ProjectsItem} />
-        <Route path="/admin" component={Admin} />
+        {
+          (this.userLogged()) ?
+            <div>
+              <Route exact path="/projects" component={ProjectsTab} />
+              <Route path="/projects/:project_name" component={ProjectsItem} />
+              <Route path="/admin" component={Admin} />
+            </div> : ''
+        }
+        <Route component={NoMatch}/>
       </Switch>
     );
   }
