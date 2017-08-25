@@ -37,15 +37,15 @@ const tablesInfo = {
       label: 'Topic Name'
     },
     {
-      key: 'subscriptions',
+      key: 'number_of_subscriptions',
       label: 'Subscriptions'
     },
     {
-      key: 'messages',
+      key: 'number_of_messages',
       label: 'Messages'
     },
     {
-      key: 'bytes',
+      key: 'number_of_bytes',
       label: 'Bytes'
     }
   ],
@@ -55,11 +55,11 @@ const tablesInfo = {
       label: 'Subscription Name'
     },
     {
-      key: 'messages',
+      key: 'number_of_messages',
       label: 'Messages'
     },
     {
-      key: 'bytes',
+      key: 'number_of_bytes',
       label: 'Bytes'
     }
   ]
