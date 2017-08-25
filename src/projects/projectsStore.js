@@ -59,7 +59,6 @@ class ProjectsStore extends Reflux.Store {
               const users = groupBy(groups[group], (metric) => {
                 return metric.resource_name.split(projectName + '.')[1];
               })
-
               //get all available metrics (table columns)
               const available_metrics = chain(groups[group])
                 .map((metric) => {
@@ -92,6 +91,7 @@ class ProjectsStore extends Reflux.Store {
   }
 
   getTopics(token, role, projectName) {
+
     let metricsUrl = `https://messaging-devel.argo.grnet.gr/v1/projects/${projectName}/topics`;
 
     request
@@ -110,11 +110,9 @@ class ProjectsStore extends Reflux.Store {
   }
 
   getTopicMetrics(token, role, topicsName) {
-    let topicSubscriptions = "topic.number_of_subscriptions";
-    let topicMessages = "topic.number_of_messages";
-    let topicBytes = "topic.number_of_bytes";
 
      let topicsUrl = `https://messaging-devel.argo.grnet.gr/v1/${topicsName}:metrics`;
+     let topic_row = {};
 
       request
         .get(topicsUrl)
@@ -122,24 +120,33 @@ class ProjectsStore extends Reflux.Store {
         .query({ key: token })
         .end((err, res) => {
           if(err) throw err;
-          let metricsPerTopic = { topicName: '', subscriptions: 0, messages: 0, bytes: 0 };
-          res.body.metrics.forEach(function(item) {
-            if (item.metric === topicSubscriptions) {
-              metricsPerTopic.topicName=item.resource_name;
-              metricsPerTopic.subscriptions=item.timeseries[0].value;
-            } else if (item.metric === topicMessages) {
-              metricsPerTopic.messages=item.timeseries[0].value;
-            } else if (item.metric === topicBytes) {
-              metricsPerTopic.bytes=item.timeseries[0].value;
+
+          let metrics = res.body.metrics;
+          const available_metrics = chain(metrics)
+            .map((metric) => {
+              return metric.metric.split(metric.resource_type + '.')[1];
+            })
+            .uniq()
+            .value();
+          //generate metrics table rows dynamically
+          topic_row['topicName'] = topicsName.split('/')[4];
+
+          available_metrics.forEach((metric_type) => {
+            const found = metrics.find((metric) => { return (metric.metric.split(metric.resource_type + '.')[1] === metric_type)});
+            if(found) {
+              topic_row[metric_type] = (found.timeseries.length > 0) ? found.timeseries[0].value : 0;
+            } else {
+              topic_row[metric_type] = 0;
             }
-          })
+          });
           let { topicMetrics } = this.state;
-          topicMetrics.push(metricsPerTopic);
+          topicMetrics.push(topic_row);
           this.setState({ topicMetrics });
         });
   }
 
   getSubscriptions(token, role, projectName) {
+
     let metricsUrl = `https://messaging-devel.argo.grnet.gr/v1/projects/${projectName}/subscriptions`;
 
     request
@@ -158,10 +165,9 @@ class ProjectsStore extends Reflux.Store {
   }
 
   getSubscriptionsMetrics(token, role, subscriptionsName) {
-    let subscriptionMessages = "subscription.number_of_messages";
-    let subscriptionBytes = "subscription.number_of_bytes";
 
      let subscriptionsUrl = `https://messaging-devel.argo.grnet.gr/v1/${subscriptionsName}:metrics`;
+     let subscription_row = {};
 
       request
         .get(subscriptionsUrl)
@@ -169,25 +175,31 @@ class ProjectsStore extends Reflux.Store {
         .query({ key: token })
         .end((err, res) => {
           if(err) throw err;
-          let metricsPerSubscription = { subscriptionName: '', messages: 0, bytes: 0 };
-          res.body.metrics.forEach(function(item) {
-            if (item.metric === subscriptionMessages) {
-              metricsPerSubscription.subscriptionName=item.resource_name;
-              metricsPerSubscription.messages=item.timeseries[0].value;
-            } else if (item.metric === subscriptionBytes) {
-              metricsPerSubscription.bytes=item.timeseries[0].value;
+          let metrics = res.body.metrics;
+          const available_metrics = chain(metrics)
+            .map((metric) => {
+              return metric.metric.split(metric.resource_type + '.')[1];
+            })
+            .uniq()
+            .value();
+          //generate metrics table rows dynamically
+          subscription_row['subscriptionName'] = subscriptionsName.split('/')[4];
+
+          available_metrics.forEach((metric_type) => {
+            const found = metrics.find((metric) => { return (metric.metric.split(metric.resource_type + '.')[1] === metric_type)});
+            if(found) {
+              subscription_row[metric_type] = (found.timeseries.length > 0) ? found.timeseries[0].value : 0;
+            } else {
+              subscription_row[metric_type] = 0;
             }
-          })
+          });
           let { subscriptionMetrics } = this.state;
-          subscriptionMetrics.push(metricsPerSubscription);
+          subscriptionMetrics.push(subscription_row);
           this.setState({ subscriptionMetrics });
         });
   }
 
   getPublisherTopics(token, role, projectName, user) {
-    let topicSubscriptions = "topic.number_of_subscriptions";
-    let topicMessages = "topic.number_of_messages";
-    let topicBytes = "topic.number_of_bytes";
 
     user.projects
     .filter((project) => {
@@ -195,6 +207,7 @@ class ProjectsStore extends Reflux.Store {
     }).forEach((project) => {
       project.topics.forEach((topicName) => {
         let topicsUrl = `https://messaging-devel.argo.grnet.gr/v1/projects/${projectName}/topics/${topicName}:metrics`;
+        let topic_row = {};
 
         request
         .get(topicsUrl)
@@ -202,19 +215,26 @@ class ProjectsStore extends Reflux.Store {
         .query({ key: token })
         .end((err, res) => {
           if(err) throw err;
-          let metricsPerTopic = { topicName: '', subscriptions: 0, messages: 0, bytes: 0 };
-          res.body.metrics.forEach(function(item) {
-            if (item.metric === topicSubscriptions) {
-              metricsPerTopic.topicName=item.resource_name;
-              metricsPerTopic.subscriptions=item.timeseries[0].value;
-            } else if (item.metric === topicMessages) {
-              metricsPerTopic.messages=item.timeseries[0].value;
-            } else if (item.metric === topicBytes) {
-              metricsPerTopic.bytes=item.timeseries[0].value;
+          let metrics = res.body.metrics;
+          const available_metrics = chain(metrics)
+            .map((metric) => {
+              return metric.metric.split(metric.resource_type + '.')[1];
+            })
+            .uniq()
+            .value();
+          //generate metrics table rows dynamically
+          topic_row['topicName'] = topicName;
+
+          available_metrics.forEach((metric_type) => {
+            const found = metrics.find((metric) => { return (metric.metric.split(metric.resource_type + '.')[1] === metric_type)});
+            if(found) {
+              topic_row[metric_type] = (found.timeseries.length > 0) ? found.timeseries[0].value : 0;
+            } else {
+              topic_row[metric_type] = 0;
             }
-          })
+          });
           let { topicMetrics } = this.state;
-          topicMetrics.push(metricsPerTopic);
+          topicMetrics.push(topic_row);
           this.setState({ topicMetrics });
         });
       });
@@ -222,8 +242,6 @@ class ProjectsStore extends Reflux.Store {
   }
 
   getConsumerSubscriptions(token, role, projectName, user) {
-    let subscriptionMessages = "subscription.number_of_messages";
-    let subscriptionBytes = "subscription.number_of_bytes";
 
     user.projects
     .filter((project) => {
@@ -231,6 +249,7 @@ class ProjectsStore extends Reflux.Store {
     }).forEach((project) => {
       project.subscriptions.forEach((subscriptionName) => {
         let subscriptionsUrl = `https://messaging-devel.argo.grnet.gr/v1/projects/${projectName}/subscriptions/${subscriptionName}:metrics`;
+        let subscription_row = {};
 
         request
           .get(subscriptionsUrl)
@@ -238,17 +257,26 @@ class ProjectsStore extends Reflux.Store {
           .query({ key: token })
           .end((err, res) => {
             if(err) throw err;
-            let metricsPerSubscription = { subscriptionName: '', messages: 0, bytes: 0 };
-            res.body.metrics.forEach(function(item) {
-              if (item.metric === subscriptionMessages) {
-                metricsPerSubscription.subscriptionName=item.resource_name;
-                metricsPerSubscription.messages=item.timeseries[0].value;
-              } else if (item.metric === subscriptionBytes) {
-                metricsPerSubscription.bytes=item.timeseries[0].value;
+            let metrics = res.body.metrics;
+            const available_metrics = chain(metrics)
+              .map((metric) => {
+                return metric.metric.split(metric.resource_type + '.')[1];
+              })
+              .uniq()
+              .value();
+            //generate metrics table rows dynamically
+            subscription_row['subscriptionName'] = subscriptionName;
+
+            available_metrics.forEach((metric_type) => {
+              const found = metrics.find((metric) => { return (metric.metric.split(metric.resource_type + '.')[1] === metric_type)});
+              if(found) {
+                subscription_row[metric_type] = (found.timeseries.length > 0) ? found.timeseries[0].value : 0;
+              } else {
+                subscription_row[metric_type] = 0;
               }
-            })
+            });
             let { subscriptionMetrics } = this.state;
-            subscriptionMetrics.push(metricsPerSubscription);
+            subscriptionMetrics.push(subscription_row);
             this.setState({ subscriptionMetrics });
           });
       });
