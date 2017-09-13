@@ -16,7 +16,7 @@ class ProjectsStore extends Reflux.Store {
   }
 
   onGetRoleInfo(token, role, projectName, user) {
-    if (role === "project_admin") {
+    if (role === "project_admin" || role === "service_admin") {
       this.getProjectMetrics(token, role, projectName);
       this.getTopics(token, role, projectName);
       this.getSubscriptions(token, role, projectName);
@@ -92,6 +92,8 @@ class ProjectsStore extends Reflux.Store {
 
   getTopics(token, role, projectName) {
 
+    this.setState({ topicMetrics: [] });
+
     let metricsUrl = `https://messaging-devel.argo.grnet.gr/v1/projects/${projectName}/topics`;
 
     request
@@ -112,7 +114,6 @@ class ProjectsStore extends Reflux.Store {
   getTopicMetrics(token, role, topicsName) {
 
      let topicsUrl = `https://messaging-devel.argo.grnet.gr/v1/${topicsName}:metrics`;
-     let topic_row = {};
 
       request
         .get(topicsUrl)
@@ -129,6 +130,7 @@ class ProjectsStore extends Reflux.Store {
             .uniq()
             .value();
           //generate metrics table rows dynamically
+          let topic_row = {};
           topic_row['topicName'] = topicsName.split('/')[4];
 
           available_metrics.forEach((metric_type) => {
@@ -146,6 +148,8 @@ class ProjectsStore extends Reflux.Store {
   }
 
   getSubscriptions(token, role, projectName) {
+
+    this.setState({ subscriptionMetrics: [] });
 
     let metricsUrl = `https://messaging-devel.argo.grnet.gr/v1/projects/${projectName}/subscriptions`;
 
