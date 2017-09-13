@@ -14,7 +14,7 @@ class Login extends Reflux.Component {
   }
 
   getDestination() {
-    return (this.state.user.service_roles.length === 0) ? '/projects' : '/admin';
+    return '/projects';
   }
 
   renderForm() {

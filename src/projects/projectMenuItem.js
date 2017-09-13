@@ -7,7 +7,7 @@ class ProjectMenuItem extends React.Component {
 
   render() {
     return (
-      <div className="container height centered">
+      <div className="container">
         <Row>
           <Col xs={12} md={12}>
             <ListGroup>
