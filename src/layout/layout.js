@@ -28,7 +28,7 @@ class Layout extends Reflux.Component {
         <Route path="/login" component={Login} />
         {
           (this.userLogged()) ?
-            <div>
+            <div className="container height centered">
               <Route exact path="/projects" component={ProjectsTab} />
               <Route path="/projects/:project_name" component={ProjectsItem} />
             </div> : ''

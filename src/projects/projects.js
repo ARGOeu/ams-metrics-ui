@@ -50,7 +50,7 @@ class ProjectsTab extends Reflux.Component {
 
   render() {
     return (
-      <div>
+      <div className="group">
         { this.renderProjects() }
       </div>
     );

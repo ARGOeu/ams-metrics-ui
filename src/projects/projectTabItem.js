@@ -7,7 +7,7 @@ class ProjectTabItem extends React.Component {
 
   render() {
     return (
-      <div className="container height centered">
+      <div>
         <Row>
           <Col xs={12} md={12}>
             <Tabs id="role-tab">
