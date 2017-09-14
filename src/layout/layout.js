@@ -5,7 +5,6 @@ import loginStore from '../login/loginStore.js';
 import Login from '../login/loginComponent.js';
 import Reflux from 'reflux';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Admin from '../admin.js';
 
 const NoMatch = () => {
   return (
@@ -32,7 +31,6 @@ class Layout extends Reflux.Component {
             <div>
               <Route exact path="/projects" component={ProjectsTab} />
               <Route path="/projects/:project_name" component={ProjectsItem} />
-              <Route path="/admin" component={Admin} />
             </div> : ''
         }
         <Route component={NoMatch}/>
