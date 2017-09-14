@@ -14,7 +14,7 @@
 }
 
 .height {
-  min-height: 800px;
+  min-height: 700px;
 }
 
 .button-link {
@@ -31,5 +31,18 @@
 }
 
 .centered {
-  margin-top: 20%;
+  margin-top: 5%;
+}
+
+.group {
+  display: flex;
+  flex-flow: row wrap;
+  /*justify-content: space-around;
+  align-content: flex-start;*/
+}
+
+.item {
+  width: 200px;
+  height: 100px;
+  margin: auto;
 }
