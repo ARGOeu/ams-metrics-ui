@@ -37,12 +37,14 @@
 .group {
   display: flex;
   flex-flow: row wrap;
-  /*justify-content: space-around;
-  align-content: flex-start;*/
 }
 
 .item {
   width: 200px;
   height: 100px;
   margin: auto;
+}
+
+.well:hover {
+  background: rgba(71, 182, 221, 0.19);
 }
