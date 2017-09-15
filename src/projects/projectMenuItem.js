@@ -8,7 +8,7 @@ class ProjectMenuItem extends React.Component {
   render() {
     return (
       <div className="item">
-        <Well>
+        <Well className="well">
           <Link to={`/projects/${this.props.project.project}`}>
             {this.props.project.project}
           </Link>
