@@ -3,6 +3,7 @@ import loginStore from '../login/loginStore.js';
 import Reflux from 'reflux';
 import ProjectMenuItem from './projectMenuItem.js';
 import request from 'superagent';
+import Sidebar from '../sidebar.js';
 
 class ProjectsTab extends Reflux.Component {
   constructor(props) {
@@ -49,9 +50,16 @@ class ProjectsTab extends Reflux.Component {
   }
 
   render() {
+    let sidebar = null;
+
+    if (this.state.user.service_roles[0] === 'service_admin') {
+      sidebar = <Sidebar />;
+    }
+
     return (
       <div className="group">
         { this.renderProjects() }
+        { sidebar }
       </div>
     );
   }
