@@ -17,14 +17,6 @@
   min-height: 700px;
 }
 
-.button-link {
-  text-decoration: none;
-  display: block;
-  color: white;
-  font-size: 100%;
-  font-weight: bold;
-}
-
 .selected {
   font-weight: bold;
   color: #5f8dc9;
@@ -40,11 +32,33 @@
 }
 
 .item {
-  width: 200px;
-  height: 100px;
-  margin: auto;
+  width: 25%;
 }
 
-.well:hover {
-  background: rgba(71, 182, 221, 0.19);
+.button {
+  display: block;
+  padding: 40px;
+  margin: 12px;
+  border-radius: 5px;
+  color: #427bc5;
+  background-color: rgba(71, 182, 221, 0.3);
+  font-weight: bold;
+  font-size: 130%;
+}
+
+.button:hover {
+  background-color: rgba(71, 182, 221, 0.35);
+  text-decoration : none;
+}
+
+@media (max-width: 768px) {
+  .item {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 768px) {
+  .item {
+    width: 50%;
+  }
 }
