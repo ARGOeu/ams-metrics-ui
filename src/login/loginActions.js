@@ -1,7 +1,8 @@
 import Reflux from 'reflux';
 
 var Actions = Reflux.createActions([
-  'getUserInfo'
+  'getUserInfo',
+  'logout'
 ]);
 
 export default Actions;

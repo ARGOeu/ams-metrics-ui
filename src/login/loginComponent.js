@@ -9,12 +9,18 @@ import { Redirect } from 'react-router-dom';
 class Login extends Reflux.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
     this.store = loginStore;
   }
 
   getDestination() {
     return '/projects';
+  }
+
+  componentDidMount() {
+    const token = localStorage.token || '';
+    if(token.length > 0) {
+      loginActions.getUserInfo(token);
+    }
   }
 
   renderForm() {
@@ -29,7 +35,7 @@ class Login extends Reflux.Component {
   }
 
   render() {
-    const loggedIn = ('name' in this.state.user && this.state.value) ? true : false;
+    const loggedIn = (this.state.user && 'name' in this.state.user && this.state.value) ? true : false;
     return (
       <div>
       { (loggedIn) ? <Redirect to={this.getDestination()} /> : this.renderForm() }
