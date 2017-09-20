@@ -5,7 +5,7 @@ import request from 'superagent';
 const superAdmin = 'e2c920cd512a6aa4408f3a52013f0698ae6c6efd';
 
 
-class StatsStore extends Reflux.Store {
+class LoginStore extends Reflux.Store {
   constructor() {
     super();
     this.listenables = [loginActions];
@@ -18,6 +18,8 @@ class StatsStore extends Reflux.Store {
   }
 
   onGetUserInfo(value) {
+    this.setState({ value });
+
     let userRole = `https://messaging-devel.argo.grnet.gr/v1/users:byToken/${value}`;
 
       request
@@ -26,13 +28,19 @@ class StatsStore extends Reflux.Store {
         .query({ key: superAdmin })
         .end((err, res) => {
           if(err) throw err;
-          this.setState({ user: res.body })
+          this.setState({ user: res.body });
+          localStorage.setItem('token', value);
           this.setState({ userInfo: ('projects' in res.body) ? res.body.projects : [] });
           if(res.body.service_roles.length === 0) {
             this.setState({ isNotAdmin : true });
           }
         });
   }
+
+  onLogout() {
+    this.setState({ user: {}, value: '' });
+    localStorage.removeItem('token');
+  }
 }
 
-export default StatsStore;
+export default LoginStore;
