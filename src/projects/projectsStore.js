@@ -1,7 +1,7 @@
 import projectsActions from './projectsActions.js';
 import Reflux from 'reflux';
 import request from 'superagent';
-import { groupBy, chain, find } from 'lodash';
+import { groupBy, chain } from 'lodash';
 
 class ProjectsStore extends Reflux.Store {
   constructor() {

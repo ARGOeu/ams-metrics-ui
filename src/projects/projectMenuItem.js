@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Well, Col, Row } from 'react-bootstrap';
 
 
 class ProjectMenuItem extends React.Component {
