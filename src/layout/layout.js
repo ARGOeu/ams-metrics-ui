@@ -1,12 +1,13 @@
 import React from 'react';
 import ProjectsTab from '../projects/projects.js';
 import ProjectsItem from '../projects/projectsItem.js';
+import Stats from '../statistics/statsComponent.js';
 import loginStore from '../login/loginStore.js';
 import loginActions from '../login/loginActions.js';
 import Login from '../login/loginComponent.js';
 import Reflux from 'reflux';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Switch, Route, Redirect, NavLink } from 'react-router-dom';
+import { Button, Col, Row, Navbar, Nav, NavItem } from 'react-bootstrap';
 
 const NoMatch = () => {
   return (
@@ -28,24 +29,51 @@ class Layout extends Reflux.Component {
     loginActions.logout();
   }
 
+  isSuperAdmin() {
+    return (this.state.user.service_roles[0] === 'service_admin') ? true : false;
+  }
+
   render() {
     return (
       <Switch>
         <Route path="/login" component={Login} />
         {
           (this.userLogged()) ?
-            <div className="container height centered">
-              <Row>
-                <Col xs={12} mdPush={6}>
-                  <Button bsStyle="primary" onClick={this.userLogout}>Logout</Button>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={12}>
-                  <Route exact path="/projects" component={ProjectsTab} />
-                  <Route path="/projects/:project_name" component={ProjectsItem} />
-                </Col>
-              </Row>
+            <div>
+              <div>
+                <Navbar collapseOnSelect>
+                  <Navbar.Collapse>
+                  {
+                    (this.isSuperAdmin()) ?
+                      <Nav>
+                        <NavItem><NavLink to="/projects">Projects</NavLink></NavItem>
+                        <NavItem><NavLink to="/statistics">Operational Statistics</NavLink></NavItem>
+                      </Nav> : ''
+                  }
+                    <Nav pullRight>
+                      <NavItem><Button onClick={this.userLogout}>Logout</Button></NavItem>
+                    </Nav>
+                  </Navbar.Collapse>
+                </Navbar>
+
+                <div className="height container centered">
+                  <Row>
+                    <Col xs={12} md={12}>
+                      <Route exact path="/projects" component={ProjectsTab}/>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={12} md={12}>
+                      <Route exact path="/projects/:project_name" component={ProjectsItem}/>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={12} md={10}>
+                      <Route exact path="/statistics" component={Stats}/>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
             </div> : ''
         }
         <Route component={NoMatch}/>
