@@ -2,9 +2,11 @@ import React from 'react';
 import ProjectsTab from '../projects/projects.js';
 import ProjectsItem from '../projects/projectsItem.js';
 import Stats from '../statistics/statsComponent.js';
+import Users from '../sumMetrics/usersComponent.js';
 import loginStore from '../login/loginStore.js';
 import loginActions from '../login/loginActions.js';
 import Login from '../login/loginComponent.js';
+import SumMetrics from '../sumMetrics/sumMetricsComponent.js';
 import Reflux from 'reflux';
 import { Switch, Route, Redirect, NavLink } from 'react-router-dom';
 import { Button, Col, Row, Navbar, Nav, NavItem } from 'react-bootstrap';
@@ -48,6 +50,7 @@ class Layout extends Reflux.Component {
                       <Nav>
                         <NavItem><NavLink to="/projects">Projects</NavLink></NavItem>
                         <NavItem><NavLink to="/statistics">Operational Statistics</NavLink></NavItem>
+                        <NavItem><NavLink to="/users">Users</NavLink></NavItem>
                       </Nav> : ''
                   }
                     <Nav pullRight>
@@ -55,7 +58,7 @@ class Layout extends Reflux.Component {
                     </Nav>
                   </Navbar.Collapse>
                 </Navbar>
-
+                <SumMetrics />
                 <div className="height container centered">
                   <Row>
                     <Col xs={12} md={12}>
@@ -70,6 +73,11 @@ class Layout extends Reflux.Component {
                   <Row>
                     <Col xs={12} md={10}>
                       <Route exact path="/statistics" component={Stats}/>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={12} md={10}>
+                      <Route exact path="/users" component={Users}/>
                     </Col>
                   </Row>
                 </div>
