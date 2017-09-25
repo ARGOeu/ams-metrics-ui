@@ -3,6 +3,7 @@ import loginStore from '../login/loginStore.js';
 import Reflux from 'reflux';
 import ProjectMenuItem from './projectMenuItem.js';
 import request from 'superagent';
+import { myConfig } from '../config.js';
 
 
 class ProjectsTab extends Reflux.Component {
@@ -12,7 +13,7 @@ class ProjectsTab extends Reflux.Component {
   }
 
   componentDidMount() {
-    const projects = 'https://messaging-devel.argo.grnet.gr/v1/projects';
+    const projects = `${myConfig.projectsUrl}`;
     let user = this.state.user;
     let token = this.state.user.token;
 

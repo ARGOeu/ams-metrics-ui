@@ -1,10 +1,10 @@
 import sumMetricsActions from './sumMetricsActions.js';
 import Reflux from 'reflux';
 import request from 'superagent';
+import { myConfig } from '../config.js';
 
-const users = 'https://messaging-devel.argo.grnet.gr/v1/users';
-const projects = 'https://messaging-devel.argo.grnet.gr/v1/projects';
-const superAdmin = 'e2c920cd512a6aa4408f3a52013f0698ae6c6efd';
+const users = `${myConfig.usersUrl}`;
+const projects = `${myConfig.projectsUrl}`;
 
 
 class SumMetricsStore extends Reflux.Store {
@@ -22,7 +22,7 @@ class SumMetricsStore extends Reflux.Store {
     request
       .get(users)
       .set('Content-Type', 'application/json')
-      .query({ key: superAdmin })
+      .query({ key: myConfig.superAdmin })
       .end((err, res) => {
         if(err) throw err;
         let user_row = {};
@@ -55,7 +55,7 @@ class SumMetricsStore extends Reflux.Store {
     request
       .get(projects)
       .set('Content-Type', 'application/json')
-      .query({ key: superAdmin })
+      .query({ key: myConfig.superAdmin })
       .end((err, res) => {
         if(err) throw err;
         const projects = ('projects' in res.body) ? res.body.projects : [];

@@ -2,6 +2,7 @@ import projectsActions from './projectsActions.js';
 import Reflux from 'reflux';
 import request from 'superagent';
 import { groupBy, chain } from 'lodash';
+import { myConfig } from '../config.js';
 
 class ProjectsStore extends Reflux.Store {
   constructor() {
@@ -28,7 +29,7 @@ class ProjectsStore extends Reflux.Store {
   }
 
   getProjectMetrics(token, role, projectName, user) {
-    let metrics = `https://messaging-devel.argo.grnet.gr/v1/projects/${projectName}:metrics`;
+    let metrics = `${myConfig.projectsUrl}/${projectName}:metrics`;
 
       request
         .get(metrics)
@@ -94,7 +95,7 @@ class ProjectsStore extends Reflux.Store {
 
     this.setState({ topicMetrics: [] });
 
-    let metricsUrl = `https://messaging-devel.argo.grnet.gr/v1/projects/${projectName}/topics`;
+    let metricsUrl = `${myConfig.projectsUrl}/${projectName}/topics`;
 
     request
       .get(metricsUrl)
@@ -113,7 +114,7 @@ class ProjectsStore extends Reflux.Store {
 
   getTopicMetrics(token, role, topicsName) {
 
-     let topicsUrl = `https://messaging-devel.argo.grnet.gr/v1/${topicsName}:metrics`;
+     let topicsUrl = `${myConfig.apiUrl}/${topicsName}:metrics`;
 
       request
         .get(topicsUrl)
@@ -151,7 +152,7 @@ class ProjectsStore extends Reflux.Store {
 
     this.setState({ subscriptionMetrics: [] });
 
-    let metricsUrl = `https://messaging-devel.argo.grnet.gr/v1/projects/${projectName}/subscriptions`;
+    let metricsUrl = `${myConfig.projectsUrl}/${projectName}/subscriptions`;
 
     request
       .get(metricsUrl)
@@ -170,7 +171,7 @@ class ProjectsStore extends Reflux.Store {
 
   getSubscriptionsMetrics(token, role, subscriptionsName) {
 
-     let subscriptionsUrl = `https://messaging-devel.argo.grnet.gr/v1/${subscriptionsName}:metrics`;
+     let subscriptionsUrl = `${myConfig.apiUrl}/${subscriptionsName}:metrics`;
      let subscription_row = {};
 
       request
@@ -210,7 +211,7 @@ class ProjectsStore extends Reflux.Store {
         return (project.project === projectName);
     }).forEach((project) => {
       project.topics.forEach((topicName) => {
-        let topicsUrl = `https://messaging-devel.argo.grnet.gr/v1/projects/${projectName}/topics/${topicName}:metrics`;
+        let topicsUrl = `${myConfig.projectsUrl}/${projectName}/topics/${topicName}:metrics`;
         let topic_row = {};
 
         request
@@ -252,7 +253,7 @@ class ProjectsStore extends Reflux.Store {
         return (project.project === projectName);
     }).forEach((project) => {
       project.subscriptions.forEach((subscriptionName) => {
-        let subscriptionsUrl = `https://messaging-devel.argo.grnet.gr/v1/projects/${projectName}/subscriptions/${subscriptionName}:metrics`;
+        let subscriptionsUrl = `${myConfig.projectsUrl}/${projectName}/subscriptions/${subscriptionName}:metrics`;
         let subscription_row = {};
 
         request
