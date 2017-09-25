@@ -58,7 +58,8 @@ class Layout extends Reflux.Component {
                     </Nav>
                   </Navbar.Collapse>
                 </Navbar>
-                <SumMetrics />
+
+                {(this.isSuperAdmin()) ? <SumMetrics /> : ''}
                 <div className="height container centered">
                   <Row>
                     <Col xs={12} md={12}>
