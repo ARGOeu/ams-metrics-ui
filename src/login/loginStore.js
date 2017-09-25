@@ -1,8 +1,7 @@
 import loginActions from './loginActions.js';
 import Reflux from 'reflux';
 import request from 'superagent';
-
-const superAdmin = 'e2c920cd512a6aa4408f3a52013f0698ae6c6efd';
+import { myConfig } from '../config.js';
 
 
 class LoginStore extends Reflux.Store {
@@ -20,12 +19,12 @@ class LoginStore extends Reflux.Store {
   onGetUserInfo(value) {
     this.setState({ value });
 
-    let userRole = `https://messaging-devel.argo.grnet.gr/v1/users:byToken/${value}`;
+    let userRole = `${myConfig.usersUrl}:byToken/${value}`;
 
       request
         .get(userRole)
         .set('Content-Type', 'application/json')
-        .query({ key: superAdmin })
+        .query({ key: myConfig.superAdmin })
         .end((err, res) => {
           if(err) throw err;
           this.setState({ user: res.body });

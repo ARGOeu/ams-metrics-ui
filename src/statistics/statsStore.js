@@ -2,9 +2,9 @@ import statsActions from './statsActions.js';
 import Reflux from 'reflux';
 import request from 'superagent';
 import { chain } from 'lodash';
+import { myConfig } from '../config.js';
 
-const metrics = 'https://messaging-devel.argo.grnet.gr/v1/metrics';
-const superAdmin = 'e2c920cd512a6aa4408f3a52013f0698ae6c6efd';
+const metrics = `${myConfig.metricsUrl}`;
 
 
 class StatsStore extends Reflux.Store {
@@ -21,7 +21,7 @@ class StatsStore extends Reflux.Store {
       request
         .get(metrics)
         .set('Content-Type', 'application/json')
-        .query({ key: superAdmin })
+        .query({ key: myConfig.superAdmin })
         .end((err, res) => {
           if(err) throw err;
           let stat_row = {};
