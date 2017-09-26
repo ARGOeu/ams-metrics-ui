@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  padding-top: 50px;
+  padding-bottom: 0;
 }
 
 .panel {
@@ -51,6 +53,11 @@
   text-decoration : none;
 }
 
+.link, .link:hover, .link:active, .link:visited, .link:focus {
+  padding-top: 10px;
+  text-decoration : none;
+}
+
 @media (max-width: 768px) {
   .item {
     width: 100%;
@@ -61,4 +68,38 @@
   .item {
     width: 50%;
   }
+}
+
+.navbar {
+  font-family: "BebasNeuewebfont", sans-serif;
+  font-size: 22px;
+  background-color: #123f7c;
+}
+
+footer {
+  color: #a5d8c7;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  background-color: #538bc6;
+  color: white;
+  text-align: left;
+}
+
+.footer h4 {
+  font-family: "BebasNeuewebfont", sans-serif;
+}
+
+.footer_top {
+  padding: 40px 0px 40px 0px;
+}
+
+.footer_bottom_holder {
+  background-color: #123f7c;
+  display: block;
+}
+
+.footer_bottom {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
 }

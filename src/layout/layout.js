@@ -47,10 +47,10 @@ class Layout extends Reflux.Component {
                   <Navbar.Collapse>
                   {
                     (this.isSuperAdmin()) ?
-                      <Nav>
-                        <NavItem><NavLink to="/projects">Projects</NavLink></NavItem>
-                        <NavItem><NavLink to="/statistics">Operational Statistics</NavLink></NavItem>
-                        <NavItem><NavLink to="/users">Users</NavLink></NavItem>
+                      <Nav className="link">
+                        <NavItem><NavLink className="link" to="/projects">Projects</NavLink></NavItem>
+                        <NavItem><NavLink className="link" to="/statistics">Operational Statistics</NavLink></NavItem>
+                        <NavItem><NavLink className="link" to="/users">Users</NavLink></NavItem>
                       </Nav> : ''
                   }
                     <Nav pullRight>
