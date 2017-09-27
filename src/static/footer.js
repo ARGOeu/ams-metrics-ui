@@ -9,7 +9,7 @@ class Footer extends React.Component {
       <div className="footer_top">
         <Row>
           <Col mdOffset={1} md={3}>
-            <p><img src="./assets/argo-logo.png" alt="Argo"/></p>
+            <p><img src="../assets/argo-logo.png" alt="Argo"/></p>
             <p>ARGO is a lightweight service for Service Level Monitoring designed for medium and large sized e-Infrastructures. 
             Learn more: <a href='http://argoeu.github.io/' style={{color: 'white'}}>http://argoeu.github.io/</a></p>
           </Col>

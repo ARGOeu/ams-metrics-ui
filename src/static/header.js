@@ -9,7 +9,7 @@ class Header extends React.Component {
       <Navbar collapseOnSelect fixedTop bsStyle="navbar">
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="http://argoeu.github.io/index.html"><img src="./assets/argo-logo.png" alt="ARGO"/></a>
+            <a href="http://argoeu.github.io/index.html"><img src="../assets/argo-logo.png" alt="ARGO"/></a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
