@@ -5,7 +5,7 @@ class Footer extends React.Component {
 
   render() {
     return (
-    <footer className="footer">
+    <footer>
       <div className="footer_top">
         <Row>
           <Col mdOffset={1} md={3}>
@@ -27,18 +27,16 @@ class Footer extends React.Component {
         </Row>
       </div>
 
-      <div className="footer_bottom_holder">
-        <div className="footer_bottom">
-          <div>
-            <span>Copyright © 2014 - 2016 GRNET S.A. </span>
-          </div>
-          <div>
-            <span>
-              <a href="http://validator.w3.org/check?uri=referer" target="blank">
-                <img src="./assets/validated.png" alt="HTML5 - CSS3 - W3C Validated" title="HTML5 - CSS3 - W3C Validated" height="30"/>
-              </a>
-            </span>
-          </div>
+      <div className="footer_bottom">
+        <div>
+          <span>Copyright © 2014 - 2016 GRNET S.A. </span>
+        </div>
+        <div>
+          <span>
+            <a href="http://validator.w3.org/check?uri=referer" target="blank">
+              <img src="../assets/validated.png" alt="HTML5 - CSS3 - W3C Validated" title="HTML5 - CSS3 - W3C Validated" height="30"/>
+            </a>
+          </span>
         </div>
       </div>
     </footer>
