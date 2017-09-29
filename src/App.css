@@ -1,18 +1,18 @@
 .App {
-  text-align: center;
   padding-top: 50px;
   padding-bottom: 0;
 }
 
 .panel {
+  text-align: center;
   margin-bottom: 20%;
-  background-color: orange;
+  background-color: #ffa500;
   border: 1% solid; 
-  border-radius: 5px 5px 5px 5px;
-  box-shadow: 5px 5px 5px #888888;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px #888;
   font-size: 200%;
   font-weight: bold;
-  color: white;
+  color: #fff;
 }
 
 .height {
@@ -25,6 +25,7 @@
 }
 
 .centered {
+  text-align: center;
   margin-top: 5%;
 }
 
@@ -37,24 +38,35 @@
   width: 25%;
 }
 
-.button {
+thead{
+  background-color: #337ab7;
+  color: #fff;
+}
+
+#role-tab-tab-1 {
+  background-color: #337ab7;
+  color: #fff;
+}
+
+.wells {
+  text-align: center;
   display: block;
   padding: 40px;
   margin: 12px;
   border-radius: 5px;
   color: #427bc5;
-  background-color: rgba(71, 182, 221, 0.3);
+  background-color: #c7e9f5;
   font-weight: bold;
   font-size: 130%;
 }
 
-.button:hover {
-  background-color: rgba(71, 182, 221, 0.35);
+.wells:hover {
+  background-color: #bfe6f3;
   text-decoration : none;
 }
 
 .link, .link:hover, .link:active, .link:visited, .link:focus {
-  padding-top: 10px;
+  padding: 10px;
   text-decoration : none;
 }
 
@@ -77,28 +89,21 @@
 }
 
 footer {
-  color: #a5d8c7;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
   background-color: #538bc6;
-  color: white;
+  color: #fff;
   text-align: left;
 }
 
-.footer h4 {
+footer h4 {
   font-family: "BebasNeuewebfont", sans-serif;
 }
 
 .footer_top {
-  padding: 40px 0px 40px 0px;
-}
-
-.footer_bottom_holder {
-  background-color: #123f7c;
-  display: block;
+  padding: 40px 0px;
 }
 
 .footer_bottom {
-  display: block;
+  background-color: #123f7c;
   height: 50px;
   line-height: 50px;
   text-align: center;
