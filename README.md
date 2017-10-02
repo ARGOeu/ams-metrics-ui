@@ -1,4 +1,4 @@
-# Project Title
+# ams-metrcis-ui
 
 A simple UI to display the metrics of Argo Messaging Service.
 
