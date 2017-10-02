@@ -53,13 +53,19 @@ class Layout extends Reflux.Component {
                         <NavItem><NavLink className="link" to="/users">Users</NavLink></NavItem>
                       </Nav> : ''
                   }
-                    <Nav pullRight>
-                      <NavItem><Button onClick={this.userLogout}>Logout</Button></NavItem>
-                    </Nav>
+                  {
+                    (this.isSuperAdmin()) ?
+                      <Nav pullRight>
+                        <NavItem id="noPadding"><SumMetrics/></NavItem>
+                        <NavItem><Button onClick={this.userLogout}>Logout</Button></NavItem>
+                      </Nav> :
+                      <Nav pullRight>
+                        <NavItem><Button onClick={this.userLogout}>Logout</Button></NavItem>
+                      </Nav>
+                  }
                   </Navbar.Collapse>
                 </Navbar>
 
-                {(this.isSuperAdmin()) ? <SumMetrics /> : ''}
                 <div className="height container centered">
                   <Row>
                     <Col xs={12} md={12}>
