@@ -3,16 +3,18 @@
   padding-bottom: 0;
 }
 
-.panel {
-  text-align: center;
-  margin-bottom: 20%;
+.panel, .panel:hover, .panel:focus {
+  display: inline-block;
   background-color: #ffa500;
-  border: 1% solid; 
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px #888;
-  font-size: 200%;
-  font-weight: bold;
   color: #fff;
+  text-decoration : none;
+  border-radius: 0px 0px 4px 4px;
+  margin: 0px 20px;
+  padding: 40px 10px 5px 10px;
+}
+
+#noPadding:first-child {
+  padding: 0px;
 }
 
 .height {
@@ -107,4 +109,8 @@ footer h4 {
   height: 50px;
   line-height: 50px;
   text-align: center;
+}
+
+.react-bootstrap-table-page-btns-ul {
+  margin: 0px 0px 20px 0px;
 }

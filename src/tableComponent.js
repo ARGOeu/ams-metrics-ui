@@ -70,7 +70,7 @@ class Table extends Reflux.Component {
 
   renderCol(col) {
     return (
-      <TableHeaderColumn dataField={col.key}>{col.label}</TableHeaderColumn>
+      <TableHeaderColumn dataField={col.key} dataAlign='center'>{col.label}</TableHeaderColumn>
     );
   }
 

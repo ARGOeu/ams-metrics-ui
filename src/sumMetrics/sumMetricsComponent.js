@@ -2,7 +2,8 @@ import React from 'react';
 import sumMetricsActions from './sumMetricsActions.js';
 import sumMetricsStore from './sumMetricsStore.js';
 import Reflux from 'reflux';
-import { Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class SumMetrics extends Reflux.Component {
   constructor(props) {
@@ -19,12 +20,8 @@ class SumMetrics extends Reflux.Component {
   render() {
     return (
       <div>
-        <Col xs={3} md={2} mdPush={6}>
-          <div className="panel">Users { this.state.users.length }</div>
-        </Col>
-        <Col xs={3} md={2} mdPush={6}>
-          <div className="panel">Projects { this.state.projects.length }</div>
-        </Col>
+        <Link className="panel" to={`/users`}>Users { this.state.users.length }</Link>
+        <Link className="panel" to={`/projects`}>Projects { this.state.projects.length }</Link>
       </div>
     );
   }
