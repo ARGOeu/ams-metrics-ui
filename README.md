@@ -21,13 +21,20 @@ A step by step series of examples that tell you have to get a development env ru
 Say what the step will be
 
 ```
-Give the example
-```
+cd /var/www/
+git clone https://github.com/ARGOeu/ams-metrics-ui
+cd /var/www/ams-metrics-ui
+npm i -S react
+npm i -S react-scripts
+npm i -S react-dom
+npm i -s reflux
+npm i -s react-bootstrap
+npm i  -s superagent
+npm i -s react-bootstrap-table
+npm i -s lodash
+update config.js
+npm run build
 
-And repeat
-
-```
-until finished
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
