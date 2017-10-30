@@ -37,7 +37,7 @@
 }
 
 .item {
-  width: 25%;
+  width: 20%;
 }
 
 thead{
@@ -53,13 +53,13 @@ thead{
 .wells {
   text-align: center;
   display: block;
-  padding: 40px;
-  margin: 12px;
+  padding: 20px;
+  margin: 6px;
   border-radius: 5px;
   color: #427bc5;
   background-color: #c7e9f5;
   font-weight: bold;
-  font-size: 130%;
+  font-size: 100%;
 }
 
 .wells:hover {
