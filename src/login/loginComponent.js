@@ -17,7 +17,7 @@ class Login extends Reflux.Component {
   }
 
   componentDidMount() {
-    const token = localStorage.token || '';
+    const token = sessionStorage.token || '';
     if(token.length > 0) {
       loginActions.getUserInfo(token);
     }

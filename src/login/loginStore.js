@@ -28,7 +28,7 @@ class LoginStore extends Reflux.Store {
         .end((err, res) => {
           if(err) throw err;
           this.setState({ user: res.body });
-          localStorage.setItem('token', value);
+          sessionStorage.setItem('token', value);
           this.setState({ userInfo: ('projects' in res.body) ? res.body.projects : [] });
           if(res.body.service_roles.length === 0) {
             this.setState({ isNotAdmin : true });
@@ -38,7 +38,7 @@ class LoginStore extends Reflux.Store {
 
   onLogout() {
     this.setState({ user: {}, value: '' });
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
   }
 }
 
