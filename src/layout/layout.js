@@ -17,6 +17,8 @@ const NoMatch = () => {
   )
 }
 
+var t;
+
 class Layout extends Reflux.Component {
   constructor(props) {
     super(props);
@@ -29,10 +31,25 @@ class Layout extends Reflux.Component {
 
   userLogout() {
     loginActions.logout();
+    window.location = '/login';
   }
 
   isSuperAdmin() {
     return (this.state.user.service_roles[0] === 'service_admin') ? true : false;
+  }
+
+  resetTimer() {
+    if(t)
+      clearTimeout(t);
+    t = setTimeout(this.userLogout, 1800 * 1000); //set timeout to 30 minutes
+  }
+
+  componentDidMount() {
+    this.resetTimer();
+  }
+
+  handleMouseMove(e) {
+    this.resetTimer();
   }
 
   render() {
@@ -41,7 +58,7 @@ class Layout extends Reflux.Component {
         <Route path="/login" component={Login} />
         {
           (this.userLogged()) ?
-            <div>
+            <div onMouseMove={this.handleMouseMove.bind(this)}>
               <div>
                 <Navbar collapseOnSelect>
                   <Navbar.Collapse>
