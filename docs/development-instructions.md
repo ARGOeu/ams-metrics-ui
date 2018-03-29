@@ -24,18 +24,3 @@ $ google-chrome --disable-web-security --user-data-dir
 ```
 $ npm start
 ```
-
-##Test accounts
-
-```
-superAdmin = e2c920cd512a6aa4408f3a52013f0698ae6c6efd
-```
-```
-publisher = 1ab5e656f48d484398a4a7de118b70a0e11226f5
-```
-```
-projectAdmin = adf77d5a0fafccb996ac41bab657466feeda9b28
-```
-```
-consumer = 049e2a1ad8634339ec23e094280aa78c94a2b944
-```
