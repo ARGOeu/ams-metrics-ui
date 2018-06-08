@@ -12,7 +12,9 @@ class LoginStore extends Reflux.Store {
       value: '',
       userInfo: [],
       user: {},
-      isNotAdmin: false
+      isNotAdmin: false,
+      error: false,
+      show: true,
     }
   }
 
@@ -26,7 +28,12 @@ class LoginStore extends Reflux.Store {
         .set('Content-Type', 'application/json')
         .query({ key: myConfig.superAdmin })
         .end((err, res) => {
-          if(err) throw err;
+          if(err && err.status === 404) {
+	    this.setState({ error : true });
+	    this.setState({ value : '' });
+	    this.setState({ show : true });
+	    throw err;
+	  }
           this.setState({ user: res.body });
           sessionStorage.setItem('token', value);
           this.setState({ userInfo: ('projects' in res.body) ? res.body.projects : [] });
