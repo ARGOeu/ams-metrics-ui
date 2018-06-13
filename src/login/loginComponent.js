@@ -32,7 +32,7 @@ class Login extends Reflux.Component {
       setTimeout(function() { this.setState({show: false}); }.bind(this), 3000);
       return (
         <div>
-          <Alert bsStyle="warning" onDismiss={this.handleDismiss}>
+          <Alert bsStyle="danger" onDismiss={this.handleDismiss}>
             <strong>Login Failed: </strong>You have not provided a valid token
           </Alert>
         </div>
