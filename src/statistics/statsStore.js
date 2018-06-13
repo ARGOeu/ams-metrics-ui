@@ -25,6 +25,7 @@ class StatsStore extends Reflux.Store {
       if(err) throw err;
       let metrics = [];
       let statMetrics = res.body.metrics;
+      // returns the object passed in forOwn and not the metric object
       chain(statMetrics)
       .groupBy(
 	(item) => {
