@@ -14,7 +14,7 @@ class LoginStore extends Reflux.Store {
       user: {},
       isNotAdmin: false,
       error: false,
-      show: true,
+      show: false,
     }
   }
 
