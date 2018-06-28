@@ -13,10 +13,10 @@ class Users extends Reflux.Component {
 
   render() {
     return (
-      <BootstrapTable data={ this.state.userMetrics } search pagination>
-        <TableHeaderColumn dataField='username' isKey={true} dataAlign='center'>Username</TableHeaderColumn>
-        <TableHeaderColumn dataField='topics' dataAlign='center'>Topics</TableHeaderColumn>
-        <TableHeaderColumn dataField='subscriptions' dataAlign='center'>Subscriptions</TableHeaderColumn>
+      <BootstrapTable data={ this.state.userMetrics } striped={true} search pagination>
+        <TableHeaderColumn dataField='username' dataSort={true} isKey={true} dataAlign='left'>Username</TableHeaderColumn>
+        <TableHeaderColumn dataField='topics' dataAlign='left'>Topics</TableHeaderColumn>
+        <TableHeaderColumn dataField='subscriptions' dataAlign='left'>Subscriptions</TableHeaderColumn>
       </BootstrapTable>
     );
   }

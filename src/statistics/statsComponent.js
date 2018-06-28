@@ -17,10 +17,10 @@ class Stats extends Reflux.Component {
 
   render() {
     return (
-      <BootstrapTable data={ this.state.metrics } search pagination>
-        <TableHeaderColumn dataField='instanceName' isKey={true} dataAlign='center'>Instances</TableHeaderColumn>
-        <TableHeaderColumn dataField='cpu_usage' dataAlign='center'>CPU usage % </TableHeaderColumn>
-        <TableHeaderColumn dataField='memory_usage' dataAlign='center'>Memory usage % </TableHeaderColumn>
+      <BootstrapTable data={ this.state.metrics } striped={true} search pagination>
+        <TableHeaderColumn dataField='instanceName' dataSort={true} isKey={true} dataAlign='left'>Instances</TableHeaderColumn>
+        <TableHeaderColumn dataField='cpu_usage' dataAlign='left'>CPU usage % </TableHeaderColumn>
+        <TableHeaderColumn dataField='memory_usage' dataAlign='left'>Memory usage % </TableHeaderColumn>
       </BootstrapTable>
     );
   }

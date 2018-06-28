@@ -70,7 +70,7 @@ class Table extends Reflux.Component {
 
   renderCol(col) {
     return (
-      <TableHeaderColumn dataField={col.key} dataAlign='center'>{col.label}</TableHeaderColumn>
+      <TableHeaderColumn dataField={col.key} dataSort={true} dataAlign='left'>{col.label}</TableHeaderColumn>
     );
   }
 
@@ -78,7 +78,7 @@ class Table extends Reflux.Component {
     const layout = (this.props.layout && this.props.layout === 'simple') ? false : true;
     return (
       <div style={{marginTop:'5%'}}>
-        <BootstrapTable data={ this.props.data } search={layout} pagination={layout} keyField={tablesInfo[this.props.tableType][0].key}>
+        <BootstrapTable data={ this.props.data } striped={true} search={layout} pagination={layout} keyField={tablesInfo[this.props.tableType][0].key}>
           {
             tablesInfo[this.props.tableType].map((col) => {
               return this.renderCol(col);
