@@ -9,7 +9,8 @@ import Login from '../login/loginComponent.js';
 import SumMetrics from '../sumMetrics/sumMetricsComponent.js';
 import Reflux from 'reflux';
 import { Switch, Route, Redirect, NavLink } from 'react-router-dom';
-import { Button, Col, Row, Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Grid, Row, Col, Button, Glyphicon } from 'react-bootstrap';
+import { slide as Menu } from 'react-burger-menu'
 
 const NoMatch = () => {
   return (
@@ -18,6 +19,14 @@ const NoMatch = () => {
 }
 
 var t;
+
+var styles = {
+  bmMenuWrap: {
+    width: '180px',
+    borderTop: '1px solid white',
+    borderRight: '1px solid white'
+  }
+}
 
 class Layout extends Reflux.Component {
   constructor(props) {
@@ -59,53 +68,42 @@ class Layout extends Reflux.Component {
         {
           (this.userLogged()) ?
             <div onMouseMove={this.handleMouseMove.bind(this)}>
-              <div>
-                <Navbar collapseOnSelect>
-                  <Navbar.Collapse>
-                  {
-                    (this.isSuperAdmin()) ?
-                      <Nav className="link">
-                        <NavItem><NavLink className="link" to="/projects">Projects</NavLink></NavItem>
-                        <NavItem><NavLink className="link" to="/statistics">Operational Statistics</NavLink></NavItem>
-                        <NavItem><NavLink className="link" to="/users">Users</NavLink></NavItem>
-                      </Nav> : ''
-                  }
-                  {
-                    (this.isSuperAdmin()) ?
-                      <Nav pullRight>
-                        <NavItem id="noPadding"><SumMetrics/></NavItem>
-                        <NavItem><Button onClick={this.userLogout}>Logout</Button></NavItem>
-                      </Nav> :
-                      <Nav pullRight>
-                        <NavItem><Button onClick={this.userLogout}>Logout</Button></NavItem>
-                      </Nav>
-                  }
-                  </Navbar.Collapse>
-                </Navbar>
-
-                <div className="height container centered">
-                  <Row>
-                    <Col xs={12} md={12}>
-                      <Route exact path="/projects" component={ProjectsTab}/>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={12} md={12}>
-                      <Route exact path="/projects/:project_name" component={ProjectsItem}/>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={12} md={10}>
-                      <Route exact path="/statistics" component={Stats}/>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={12} md={10}>
-                      <Route exact path="/users" component={Users}/>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
+                {
+                  (this.isSuperAdmin()) ?
+                    <Menu noOverlay styles={ styles }>
+                      <NavLink className="link" to="/projects">
+                        <Glyphicon glyph="briefcase" />Projects
+                      </NavLink>
+                      <NavLink className="link" to="/statistics">
+                        <Glyphicon glyph="stats" />Statistics
+                      </NavLink>
+                      <NavLink className="link" to="/users">
+                        <Glyphicon glyph="user" />Users
+                      </NavLink>
+                      <Button onClick={this.userLogout} className="btn-logout">
+                        <Glyphicon glyph="log-out" />Log out
+                      </Button>
+                    </Menu>
+                    :
+                    <Menu noOverlay styles={ styles }>
+                      <NavLink className="link" to="/projects">
+                        <Glyphicon glyph="briefcase" />Projects
+                      </NavLink>
+                      <Button onClick={this.userLogout} className="btn-logout">
+                        <Glyphicon glyph="log-out" />Log out
+                      </Button>
+                    </Menu>
+                }
+              <Grid>
+              <Row className="show-grid centered">
+                <Col xs={12} md={10} mdPush={2}>
+                  <Route exact path="/projects" component={ProjectsTab}/>
+                  <Route exact path="/projects/:project_name" component={ProjectsItem}/>
+                  <Route exact path="/statistics" component={Stats}/>
+                  <Route exact path="/users" component={Users}/>
+                </Col>
+              </Row>
+              </Grid>
             </div> : ''
         }
         <Route component={NoMatch}/>
