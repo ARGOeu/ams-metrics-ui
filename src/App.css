@@ -155,33 +155,7 @@ span.bm-burger-bars {
   }
 }
 
-.navbar {
-  font-family: "BebasNeuewebfont", sans-serif;
-  font-size: 22px;
-  background-color: #123f7c;
-}
-
-footer {
-  background-color: #538bc6;
-  color: #fff;
-  text-align: left;
-}
-
-footer h4 {
-  font-family: "BebasNeuewebfont", sans-serif;
-}
-
-.footer_top {
-  padding: 40px 0px;
-}
-
-.footer_bottom {
-  background-color: #123f7c;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-}
-
 .react-bootstrap-table-page-btns-ul {
   margin: 0px 0px 20px 0px;
 }
+
