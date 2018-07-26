@@ -1,6 +1,11 @@
 .App {
-  padding-top: 50px;
-  padding-bottom: 0;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.layout {
+  flex:1;
 }
 
 body {

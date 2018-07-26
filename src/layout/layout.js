@@ -67,7 +67,7 @@ class Layout extends Reflux.Component {
         <Route path="/login" component={Login} />
         {
           (this.userLogged()) ?
-            <div onMouseMove={this.handleMouseMove.bind(this)}>
+            <div onMouseMove={this.handleMouseMove.bind(this)} className='layout'>
                 {
                   (this.isSuperAdmin()) ?
                     <Menu noOverlay styles={ styles }>
