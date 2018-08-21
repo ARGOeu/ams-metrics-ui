@@ -4,15 +4,6 @@
   flex-direction: column;
 }
 
-.layout {
-  flex:1;
-}
-
-body {
-background: #f4f6f9;
-}
-
-
 /* Header styles */
 .navbar {
   background: #123f7c;
@@ -130,23 +121,8 @@ span.bm-burger-bars {
   width: 20%;
 }
 
-.wells {
-  text-align: center;
-  display: block;
-  padding: 20px;
-  margin: 6px;
-  border-radius: 5px;
-  color: #123f7c;
-  text-decoration : none;
-  background-color: #c2c7d0;
-  font-weight: bold;
-  font-size: 100%;
-}
-
-.wells:hover {
-  color: #fff;
-  background-color: #123f7c;;
-  text-decoration : none;
+.layout {
+  flex:1;
 }
 
 @media (max-width: 768px) {
