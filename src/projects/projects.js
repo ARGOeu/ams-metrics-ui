@@ -4,6 +4,7 @@ import Reflux from 'reflux';
 import ProjectMenuItem from './projectMenuItem.js';
 import request from 'superagent';
 import { myConfig } from '../config.js';
+import { Dropdown, MenuItem, Glyphicon } from 'react-bootstrap';
 
 
 class ProjectsTab extends Reflux.Component {
@@ -53,8 +54,18 @@ class ProjectsTab extends Reflux.Component {
   render() {
 
     return (
-      <div className="group">
-        { this.renderProjects() }
+      <div>
+        <Dropdown>
+          <Dropdown.Toggle className='link'>
+              <Glyphicon glyph='briefcase' />
+            Projects
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <MenuItem>
+              { this.renderProjects() }
+            </MenuItem>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
     );
   }
