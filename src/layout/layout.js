@@ -71,9 +71,7 @@ class Layout extends Reflux.Component {
                 {
                   (this.isSuperAdmin()) ?
                     <Menu noOverlay styles={ styles }>
-                      <NavLink className="link" to="/projects">
-                        <Glyphicon glyph="briefcase" />Projects
-                      </NavLink>
+                      <ProjectsTab />
                       <NavLink className="link" to="/statistics">
                         <Glyphicon glyph="stats" />Statistics
                       </NavLink>
@@ -97,7 +95,6 @@ class Layout extends Reflux.Component {
               <Grid>
               <Row className="show-grid centered">
                 <Col xs={12} md={10} mdPush={2}>
-                  <Route exact path="/projects" component={ProjectsTab}/>
                   <Route exact path="/projects/:project_name" component={ProjectsItem}/>
                   <Route exact path="/statistics" component={Stats}/>
                   <Route exact path="/users" component={Users}/>
