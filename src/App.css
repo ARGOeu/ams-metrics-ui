@@ -114,15 +114,16 @@ span.bm-burger-bars {
   padding: 40px 10px 5px 10px;
 }
 
+/* Layout styles */
 .centered {
   text-align: center;
-  margin-top: 5%;
+  margin-top: 10%;
   margin-bottom: 5%;
 }
 
-.group {
-  display: flex;
-  flex-flow: row wrap;
+.error-position {
+  margin-top: 4%;
+  position: relative;
 }
 
 .item {

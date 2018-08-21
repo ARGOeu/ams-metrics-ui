@@ -44,14 +44,16 @@ class Login extends Reflux.Component {
 
   renderForm() {
     return (
-      <div className="height">
-	<div>
-	  { (this.state.error) ? this.renderShowError() : '' }
-	</div>
-        <Form inline className="centered" onSubmit={event => this.submitInputValue(event)}>
-          <FormControl bsSize="large" type="text" placeholder="Enter token" value={this.state.value} onChange={event => this.updateInputValue(event)}></FormControl>
-          <Button bsSize="large" bsStyle="primary" type="submit" value="Submit">Login</Button>
-        </Form>
+      <div>
+        <div className="error-position">
+          { (this.state.error) ? this.renderShowError() : '' }
+        </div>
+        <div className="centered">
+          <Form inline onSubmit={event => this.submitInputValue(event)}>
+            <FormControl bsSize="large" type="text" placeholder="Enter token" value={this.state.value} onChange={event => this.updateInputValue(event)}></FormControl>
+            <Button bsSize="large" bsStyle="primary" type="submit" value="Submit">Login</Button>
+          </Form>
+        </div>
       </div>
     );
   }
@@ -59,7 +61,7 @@ class Login extends Reflux.Component {
   render() {
     const loggedIn = (this.state.user && 'name' in this.state.user && this.state.value) ? true : false;
     return (
-      <div>
+      <div className='layout'>
       { (loggedIn) ? <Redirect to={this.getDestination()} /> : this.renderForm() }
       </div>
     )
