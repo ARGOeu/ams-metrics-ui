@@ -70,6 +70,24 @@ span.bm-burger-bars {
 
 .btn-logout {
   margin-top: 2.5em;
+  background-color: #123f7c !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  color: #c2c7d0 !important;
+  padding: 10px;
+  text-decoration : none;
+}
+
+.btn-logout:hover {
+  background-image: none !important;
+  text-shadow: none !important;
+  color: #fff !important;
+  padding: 10px 84px 10px 10px;
+  text-decoration : none;
+  background-color: rgba(255,255,255,.1) !important;
+  border-radius: .25rem !important;
 }
 
 .link, .link:active, .link:visited, .link:focus {
@@ -121,22 +139,30 @@ span.bm-burger-bars {
   color: #fff !important;
   text-decoration : none;
 }
-.btn {
+
+.dropdown-btn {
   background-color: #123f7c !important;
   background-image: none !important;
   border: none !important;
   box-shadow: none !important;
   text-shadow: none !important;
+  color: #c2c7d0 !important;
+  padding: 10px;
+  text-decoration : none;
 }
 
-.btn:hover,
-.btn:visited,
-.btn:focus,
-.btn:active,
-.btn:active:hover {
+.dropdown-btn:hover,
+.dropdown-btn:visited,
+.dropdown-btn:focus,
+.dropdown-btn:active,
+.dropdown-btn:active:hover {
   background-image: none !important;
   text-shadow: none !important;
-  color: #c2c7d0;
+  color: #fff !important;
+  padding: 10px 70px 10px 10px;
+  text-decoration : none;
+  background-color: rgba(255,255,255,.1) !important;
+  border-radius: .25rem !important;
 }
 
 /* Layout styles */

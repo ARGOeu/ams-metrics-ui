@@ -56,7 +56,7 @@ class ProjectsTab extends Reflux.Component {
     return (
       <div>
         <Dropdown>
-          <Dropdown.Toggle className='link'>
+          <Dropdown.Toggle className='dropdown-btn'>
               <Glyphicon glyph='briefcase' />
             Projects
           </Dropdown.Toggle>

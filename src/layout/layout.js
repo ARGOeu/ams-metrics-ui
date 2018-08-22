@@ -78,7 +78,7 @@ class Layout extends Reflux.Component {
                       <NavLink className="link" to="/users">
                         <Glyphicon glyph="user" />Users
                       </NavLink>
-                      <Button onClick={this.userLogout} className="btn-logout link">
+                      <Button onClick={this.userLogout} className="btn-logout">
                         <Glyphicon glyph="log-out" />Log out
                       </Button>
                     </Menu>
@@ -88,7 +88,7 @@ class Layout extends Reflux.Component {
                         <Glyphicon glyph="briefcase" />Projects
                       </NavLink>
                       <ProjectsTab />
-                      <Button onClick={this.userLogout} className="btn-logout link">
+                      <Button onClick={this.userLogout} className="btn-logout">
                         <Glyphicon glyph="log-out" />Log out
                       </Button>
                     </Menu>
