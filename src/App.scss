@@ -1,3 +1,9 @@
+$white: #ffffff;
+$white-transparent: rgba(255,255,255,.1);
+$chathams-blue: #123f7c;
+$danube: #538bc6;
+$ghost: #c2c7d0;
+
 .App {
   display: flex;
   min-height: 100vh;
@@ -6,13 +12,13 @@
 
 /* Header styles */
 .navbar {
-  background: #123f7c;
+  background: $chathams-blue;
 }
 
 /* Footer styles */
 footer {
-  background-color: #538bc6;
-  color: #fff;
+  background-color: $danube;
+  color: $white;
   text-align: left;
 }
 
@@ -25,7 +31,7 @@ footer h4 {
 }
 
 .footer-bottom {
-  background-color: #123f7c;
+  background-color: $chathams-blue;
   height: 50px;
   line-height: 50px;
   text-align: center;
@@ -33,7 +39,7 @@ footer h4 {
 
 /* Sidebar styles */
 .bm-menu {
-  background: #123f7c;
+  background: $chathams-blue;
   padding: 4.5em 0.5em 0;
   font-size: 1.15em;
 }
@@ -52,7 +58,7 @@ span.bm-burger-bars {
 }
 
 .bm-burger-bars {
-  background: #c2c7d0;
+  background: $ghost;
 }
 
 .bm-cross-button {
@@ -70,7 +76,7 @@ span.bm-burger-bars {
 
 .btn-logout {
   margin-top: 2.5em;
-  background-color: #123f7c !important;
+  background-color: $chathams-blue !important;
   background-image: none !important;
   border: none !important;
   box-shadow: none !important;
@@ -98,31 +104,31 @@ span.bm-burger-bars {
 }
 
 .link:hover {
-  color: #fff !important;
+  color: $white !important;
   padding: 10px;
   text-decoration : none;
-  background-color: rgba(255,255,255,.1) !important;
+  background-color: $white-transparent !important;
   border-radius: .25rem !important;
 }
 
 .dropdown-menu {
-  color: #c2c7d0 !important;
+  color: $ghost !important;
   position: relative;
-  background-color: #123f7c;
+  background-color: $chathams-blue;
   background-image: none;
   box-shadow: none;
   border: none;
 }
 
 .dropdown-menu > li > a {
-  color: #c2c7d0 !important;
+  color: $ghost !important;
   line-height: 1.8;
 }
 
 .dropdown-menu > li > a:hover {
-  color: #fff;
+  color: $white;
   position: relative;
-  background-color: #123f7c;
+  background-color: $chathams-blue;
   background-image: none;
   box-shadow: none;
   border: none;
@@ -130,23 +136,23 @@ span.bm-burger-bars {
 }
 
 .dropdown-item {
-  color: #c2c7d0 !important;
+  color: $ghost !important;
   text-decoration : none;
-  background: #123f7c !important;
+  background: $chathams-blue !important;
 }
 
 .dropdown-item:hover {
-  color: #fff !important;
+  color: $white !important;
   text-decoration : none;
 }
 
 .dropdown-btn {
-  background-color: #123f7c !important;
+  background-color: $chathams-blue !important;
   background-image: none !important;
   border: none !important;
   box-shadow: none !important;
   text-shadow: none !important;
-  color: #c2c7d0 !important;
+  color: $ghost !important;
   padding: 10px;
   text-decoration : none;
 }
@@ -158,10 +164,10 @@ span.bm-burger-bars {
 .dropdown-btn:active:hover {
   background-image: none !important;
   text-shadow: none !important;
-  color: #fff !important;
+  color: $white !important;
   padding: 10px 70px 10px 10px;
   text-decoration : none;
-  background-color: rgba(255,255,255,.1) !important;
+  background-color: $white-transparent !important;
   border-radius: .25rem !important;
 }
 
@@ -200,4 +206,3 @@ span.bm-burger-bars {
 .react-bootstrap-table-page-btns-ul {
   margin: 0px 0px 20px 0px;
 }
-

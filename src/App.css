@@ -10,7 +10,7 @@
 /* Footer styles */
 footer {
   background-color: #538bc6;
-  color: #fff;
+  color: #ffffff;
   text-align: left; }
 
 footer h4 {
@@ -82,7 +82,7 @@ span.bm-burger-bars {
   background: #123f7c !important; }
 
 .link:hover {
-  color: #fff !important;
+  color: #ffffff !important;
   padding: 10px;
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.1) !important;
@@ -101,7 +101,7 @@ span.bm-burger-bars {
   line-height: 1.8; }
 
 .dropdown-menu > li > a:hover {
-  color: #fff;
+  color: #ffffff;
   position: relative;
   background-color: #123f7c;
   background-image: none;
@@ -115,7 +115,7 @@ span.bm-burger-bars {
   background: #123f7c !important; }
 
 .dropdown-item:hover {
-  color: #fff !important;
+  color: #ffffff !important;
   text-decoration: none; }
 
 .dropdown-btn {
@@ -135,7 +135,7 @@ span.bm-burger-bars {
 .dropdown-btn:active:hover {
   background-image: none !important;
   text-shadow: none !important;
-  color: #fff !important;
+  color: #ffffff !important;
   padding: 10px 70px 10px 10px;
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.1) !important;
