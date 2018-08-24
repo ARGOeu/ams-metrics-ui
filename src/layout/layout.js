@@ -84,9 +84,6 @@ class Layout extends Reflux.Component {
                     </Menu>
                     :
                     <Menu noOverlay styles={ styles }>
-                      <NavLink className="link" to="/projects">
-                        <Glyphicon glyph="briefcase" />Projects
-                      </NavLink>
                       <ProjectsTab />
                       <Button onClick={this.userLogout} className="btn-logout">
                         <Glyphicon glyph="log-out" />Log out
