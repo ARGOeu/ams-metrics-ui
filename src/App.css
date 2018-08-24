@@ -1,3 +1,21 @@
+/*Theme colors*/
+.btn-logout, .btn-logout:hover, .dropdown-btn, .dropdown-btn:hover, .dropdown-btn:visited, .dropdown-btn:focus, .dropdown-btn:active, .dropdown-btn:active:hover {
+  background-image: none !important;
+  box-shadow: none !important;
+  text-decoration: none;
+  text-shadow: none !important; }
+
+.btn-logout, .dropdown-btn {
+  background-color: #123f7c !important;
+  border: none !important;
+  color: #c2c7d0 !important;
+  padding: 10px; }
+
+.btn-logout:hover, .dropdown-btn:hover, .dropdown-btn:visited, .dropdown-btn:focus, .dropdown-btn:active, .dropdown-btn:active:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: .25rem !important;
+  color: #ffffff !important; }
+
 .App {
   display: flex;
   min-height: 100vh;
@@ -50,30 +68,16 @@ span.bm-burger-bars {
   width: 24px; }
 
 .bm-cross {
-  background: #bdc3c7; }
+  background: #c2c7d0; }
 
 .glyphicon {
   padding-right: 0.5em; }
 
 .btn-logout {
-  margin-top: 2.5em;
-  background-color: #123f7c !important;
-  background-image: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-  color: #c2c7d0 !important;
-  padding: 10px;
-  text-decoration: none; }
+  margin-top: 2.5em; }
 
 .btn-logout:hover {
-  background-image: none !important;
-  text-shadow: none !important;
-  color: #fff !important;
-  padding: 10px 84px 10px 10px;
-  text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  border-radius: .25rem !important; }
+  padding: 10px 84px 10px 10px; }
 
 .link, .link:active, .link:visited, .link:focus {
   color: #c2c7d0 !important;
@@ -118,28 +122,8 @@ span.bm-burger-bars {
   color: #ffffff !important;
   text-decoration: none; }
 
-.dropdown-btn {
-  background-color: #123f7c !important;
-  background-image: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-  color: #c2c7d0 !important;
-  padding: 10px;
-  text-decoration: none; }
-
-.dropdown-btn:hover,
-.dropdown-btn:visited,
-.dropdown-btn:focus,
-.dropdown-btn:active,
-.dropdown-btn:active:hover {
-  background-image: none !important;
-  text-shadow: none !important;
-  color: #ffffff !important;
-  padding: 10px 70px 10px 10px;
-  text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  border-radius: .25rem !important; }
+.dropdown-btn:hover, .dropdown-btn:visited, .dropdown-btn:focus, .dropdown-btn:active, .dropdown-btn:active:hover {
+  padding: 10px 70px 10px 10px; }
 
 /* Layout styles */
 .centered {

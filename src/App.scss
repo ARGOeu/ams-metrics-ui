@@ -1,8 +1,29 @@
+/*Theme colors*/
 $white: #ffffff;
 $white-transparent: rgba(255,255,255,.1);
 $chathams-blue: #123f7c;
 $danube: #538bc6;
 $ghost: #c2c7d0;
+
+%no-special-effects {
+  background-image: none !important;
+  box-shadow: none !important;
+  text-decoration : none;
+  text-shadow: none !important
+}
+
+%custom-button {
+  background-color: $chathams-blue !important;
+  border: none !important;
+  color: $ghost !important;
+  padding: 10px;
+}
+
+%custom-button-hover {
+  background-color: $white-transparent !important;
+  border-radius: .25rem !important;
+  color: $white !important;
+}
 
 .App {
   display: flex;
@@ -67,7 +88,7 @@ span.bm-burger-bars {
 }
 
 .bm-cross {
-  background: #bdc3c7;
+  background: $ghost;
 }
 
 .glyphicon {
@@ -75,32 +96,22 @@ span.bm-burger-bars {
 }
 
 .btn-logout {
+  @extend  %no-special-effects;
+  @extend %custom-button;
   margin-top: 2.5em;
-  background-color: $chathams-blue !important;
-  background-image: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-  color: #c2c7d0 !important;
-  padding: 10px;
-  text-decoration : none;
 }
 
 .btn-logout:hover {
-  background-image: none !important;
-  text-shadow: none !important;
-  color: #fff !important;
+  @extend  %no-special-effects;
+  @extend %custom-button-hover;
   padding: 10px 84px 10px 10px;
-  text-decoration : none;
-  background-color: rgba(255,255,255,.1) !important;
-  border-radius: .25rem !important;
 }
 
 .link, .link:active, .link:visited, .link:focus {
-  color: #c2c7d0 !important;
+  color: $ghost !important;
   padding: 10px;
   text-decoration : none;
-  background: #123f7c !important;
+  background: $chathams-blue !important;
 }
 
 .link:hover {
@@ -147,28 +158,14 @@ span.bm-burger-bars {
 }
 
 .dropdown-btn {
-  background-color: $chathams-blue !important;
-  background-image: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-  color: $ghost !important;
-  padding: 10px;
-  text-decoration : none;
+  @extend  %no-special-effects;
+  @extend %custom-button;
 }
 
-.dropdown-btn:hover,
-.dropdown-btn:visited,
-.dropdown-btn:focus,
-.dropdown-btn:active,
-.dropdown-btn:active:hover {
-  background-image: none !important;
-  text-shadow: none !important;
-  color: $white !important;
+.dropdown-btn:hover, .dropdown-btn:visited, .dropdown-btn:focus, .dropdown-btn:active, .dropdown-btn:active:hover {
+  @extend  %no-special-effects;
+  @extend %custom-button-hover;
   padding: 10px 70px 10px 10px;
-  text-decoration : none;
-  background-color: $white-transparent !important;
-  border-radius: .25rem !important;
 }
 
 /* Layout styles */
