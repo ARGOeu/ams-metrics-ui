@@ -1,6 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+var numeral = require('numeral');
 
 const tablesInfo = {
   projectMetrics: [
@@ -65,12 +66,24 @@ const tablesInfo = {
   ]
 };
 
+function numberFormatter(cell, row) {
+  Object.keys(row).forEach((key) => {
+    if (key === 'number_of_messages') {
+      row[key] = numeral(row[key]).format('0,0');
+    } else if (key === 'number_of_bytes') {
+      if (!isNaN(row[key])) {
+      row[key] = numeral(row[key]).format('0.00b');
+      }
+    }
+  });
+  return cell;
+}
 
 class Table extends Reflux.Component {
 
   renderCol(col) {
     return (
-      <TableHeaderColumn dataField={col.key} dataSort={true} dataAlign='left'>{col.label}</TableHeaderColumn>
+      <TableHeaderColumn dataField={col.key} dataSort={true} dataAlign='left' dataFormat={ numberFormatter }>{col.label}</TableHeaderColumn>
     );
   }
 
