@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectsTab from '../projects/projects.js';
+import ProjectsTab from '../projects/projectsTab.js';
 import ProjectsItem from '../projects/projectsItem.js';
 import Stats from '../statistics/statsComponent.js';
 import Users from '../sumMetrics/usersComponent.js';
