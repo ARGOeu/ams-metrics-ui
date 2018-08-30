@@ -8,7 +8,7 @@ import loginActions from '../login/loginActions.js';
 import Login from '../login/loginComponent.js';
 import SumMetrics from '../sumMetrics/sumMetricsComponent.js';
 import Reflux from 'reflux';
-import { Switch, Route, Redirect, NavLink } from 'react-router-dom';
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import { Grid, Row, Col, Button, Glyphicon } from 'react-bootstrap';
 import { slide as Menu } from 'react-burger-menu'
 
@@ -71,20 +71,24 @@ class Layout extends Reflux.Component {
                 {
                   (this.isSuperAdmin()) ?
                     <Menu noOverlay styles={ styles }>
-                      <ProjectsTab />
-                      <NavLink className="link" to="/statistics">
+                      <Link to="/projects">
+                        <ProjectsTab />
+                      </Link>
+                      <Link className="link" to="/statistics">
                         <Glyphicon glyph="stats" />Statistics
-                      </NavLink>
-                      <NavLink className="link" to="/users">
+                      </Link>
+                      <Link className="link" to="/users">
                         <Glyphicon glyph="user" />Users
-                      </NavLink>
+                      </Link>
                       <Button onClick={this.userLogout} className="btn-logout">
                         <Glyphicon glyph="log-out" />Log out
                       </Button>
                     </Menu>
                     :
                     <Menu noOverlay styles={ styles }>
-                      <ProjectsTab />
+                      <Link to="/projects">
+                        <ProjectsTab />
+                      </Link>
                       <Button onClick={this.userLogout} className="btn-logout">
                         <Glyphicon glyph="log-out" />Log out
                       </Button>
