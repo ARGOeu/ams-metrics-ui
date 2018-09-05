@@ -18,8 +18,8 @@ class ProjectsItem extends Reflux.Component {
     .filter((project) => {
         return (project.project === projectName);
     }).forEach((project) => {
-      project.roles.forEach((role) => {
-        tabs.push(<ProjectTabItem role={role} project={project}/>);
+      project.roles.forEach((role, index) => {
+        tabs.push(<ProjectTabItem role={role} project={project} tabKey={index} key={index}/>);
       });
     });
     return tabs;

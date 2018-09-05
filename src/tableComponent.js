@@ -83,7 +83,7 @@ class Table extends Reflux.Component {
 
   renderCol(col) {
     return (
-      <TableHeaderColumn dataField={col.key} dataSort={true} dataAlign='left' dataFormat={ numberFormatter }>{col.label}</TableHeaderColumn>
+      <TableHeaderColumn dataField={col.key} dataSort={true} dataAlign='left' dataFormat={ numberFormatter } key={col.key}>{col.label}</TableHeaderColumn>
     );
   }
 
