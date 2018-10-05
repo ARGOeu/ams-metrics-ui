@@ -15,15 +15,17 @@ class Footer extends React.Component {
             Learn more: <a href='http://argoeu.github.io/' style={{color: 'white'}}>http://argoeu.github.io/</a></p>
           </Col>
           <Col mdPush={2} md={3}>
-            <h4>Contact Us</h4>
-            <address>
-            <strong>Email</strong><br/>
-              <a href="mailto:argoeu-project@googlegroups.com" style={{color: 'white'}}>argoeu-project[AT]googlegroups.com</a>
-            </address>
+            <h4>ARGO AMS - Metrics</h4>
+            <p>The ARGO Messaging Service (AMS) is a Publish/Subscribe Service, which implements the Google PubSub protocol. It provides an HTTP API that enables Users/Systems to implement message oriented service. This Services metrics on top of the AMS</p>
           </Col>
           <Col mdPush= {2} md={3}>
             <h4>Open development </h4>
-            <p> We follow an open development process. All the repositories of ARGO are hosted on Github under the ARGOeu organization.</p>
+            <p>We follow an open development process. All the repositories of ARGO are hosted on Github under the ARGOeu organization.</p>
+            <h4>Contact Us</h4>
+              <address>
+              <strong>Email</strong><br/>
+                <a href="mailto:argo@lists.grnet.gr" style={{color: 'white'}}>argo[AT]lists.grnet.gr</a>
+              </address>
           </Col>
         </Row>
           </Grid>
@@ -31,7 +33,7 @@ class Footer extends React.Component {
 
       <div className="footer-bottom">
         <div>
-          <span>Copyright © 2014 - 2016 GRNET S.A. </span>
+          <span>Copyright © 2014 - 2018 GRNET S.A. </span>
         </div>
         <div>
           <span>
