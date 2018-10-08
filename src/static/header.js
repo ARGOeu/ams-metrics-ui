@@ -11,7 +11,7 @@ class Header extends React.Component {
           <Navbar.Brand>
             <Grid>
               <Row className="show-grid">
-                <Col md={1} mdPush={2} lg={1} lgPush={1} xsHidden smHidden >
+                <Col md={1} xsHidden>
                   <a href="/projects"><img src="../assets/argo-logo.png" alt="ARGO"/></a>
                 </Col>
               </Row>
