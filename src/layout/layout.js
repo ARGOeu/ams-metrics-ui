@@ -22,7 +22,7 @@ var t;
 
 var styles = {
   bmMenuWrap: {
-    width: '180px',
+    width: '250px',
     borderTop: '1px solid white',
     borderRight: '1px solid white'
   }
