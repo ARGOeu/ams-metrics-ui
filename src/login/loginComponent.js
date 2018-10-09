@@ -48,7 +48,7 @@ class Login extends Reflux.Component {
         <div className="error-position">
           { (this.state.error) ? this.renderShowError() : '' }
         </div>
-        <div className="centered">
+        <div className="content-position">
           <Form inline onSubmit={event => this.submitInputValue(event)}>
             <FormControl bsSize="large" type="text" placeholder="Enter token" value={this.state.value} onChange={event => this.updateInputValue(event)}></FormControl>
             <Button bsSize="large" bsStyle="primary" type="submit" value="Submit">Login</Button>

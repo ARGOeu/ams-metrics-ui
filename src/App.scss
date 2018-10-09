@@ -6,23 +6,23 @@ $danube: #538bc6;
 $ghost: #c2c7d0;
 
 %no-special-effects {
-  background-image: none !important;
-  box-shadow: none !important;
+  background-image: none;
+  box-shadow: none;
   text-decoration : none;
-  text-shadow: none !important
+  text-shadow: none
 }
 
 %custom-button {
-  background-color: $chathams-blue !important;
-  border: none !important;
-  color: $ghost !important;
+  background-color: $chathams-blue;
+  border: none;
+  color: $ghost;
   padding: 10px;
 }
 
 %custom-button-hover {
-  background-color: $white-transparent !important;
-  border-radius: .25rem !important;
-  color: $white !important;
+  background-color: $white-transparent;
+  border-radius: .25rem;
+  color: $white;
 }
 
 .App {
@@ -58,20 +58,45 @@ footer h4 {
   text-align: center;
 }
 
+/* Layout styles */
+.content-position {
+  text-align: center;
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+.error-position {
+  margin-top: 4%;
+  position: relative;
+}
+
+.layout {
+  flex:1;
+}
+
+.react-bootstrap-table-page-btns-ul {
+  margin: 0px 0px 20px 0px;
+}
+
 /* Sidebar styles */
+.bm-menu-wrap {
+  border-top: 1px solid white;
+  border-right: 1px solid white;
+}
+
 .bm-menu {
   background: $chathams-blue;
-  padding: 4.5em 0.5em 0;
+  padding: 3.5em 0.5em 0;
   font-size: 1.15em;
 }
 
 .bm-burger-button {
-  position:fixed;
+  position: fixed;
   top: 15px;
   left: 15px;
   width: 25px;
   height: 20px;
-  z-index: 10000 !important;
+  z-index: 1050 !important;
 }
 
 span.bm-burger-bars {
@@ -96,110 +121,54 @@ span.bm-burger-bars {
 }
 
 .btn-logout {
-  @extend  %no-special-effects;
+  @extend %no-special-effects;
   @extend %custom-button;
   margin-top: 2.5em;
 }
 
 .btn-logout:hover {
-  @extend  %no-special-effects;
   @extend %custom-button-hover;
-  padding: 10px 84px 10px 10px;
+  padding: 10px 155px 10px 10px;
 }
 
-.link, .link:active, .link:visited, .link:focus {
-  color: $ghost !important;
-  padding: 10px;
-  text-decoration : none;
-  background: $chathams-blue !important;
-}
-
-.link:hover {
-  color: $white !important;
-  padding: 10px;
-  text-decoration : none;
-  background-color: $white-transparent !important;
-  border-radius: .25rem !important;
-}
-
-.dropdown-menu {
-  color: $ghost !important;
-  position: relative;
-  background-color: $chathams-blue;
-  background-image: none;
-  box-shadow: none;
-  border: none;
-}
-
-.dropdown-menu > li > a {
-  color: $ghost !important;
-  line-height: 1.8;
-}
-
-.dropdown-menu > li > a:hover {
-  color: $white;
-  position: relative;
-  background-color: $chathams-blue;
-  background-image: none;
-  box-shadow: none;
-  border: none;
-  line-height: 1.8;
-}
-
-.dropdown-item {
-  color: $ghost !important;
-  text-decoration : none;
-  background: $chathams-blue !important;
-}
-
-.dropdown-item:hover {
-  color: $white !important;
-  text-decoration : none;
-}
-
-.dropdown-btn {
-  @extend  %no-special-effects;
+.sidebar-tab, .sidebar-tab:visited, {
   @extend %custom-button;
 }
 
-.dropdown-btn:hover, .dropdown-btn:visited, .dropdown-btn:focus, .dropdown-btn:active, .dropdown-btn:active:hover {
-  @extend  %no-special-effects;
+.sidebar-tab:hover, .sidebar-tab:focus, .sidebar-tab:active {
+  @extend %no-special-effects;
   @extend %custom-button-hover;
-  padding: 10px 70px 10px 10px;
 }
 
-/* Layout styles */
-.centered {
-  text-align: center;
-  margin-top: 10%;
-  margin-bottom: 5%;
+#dropdown-btn, #dropdown-btn:visited {
+  @extend %no-special-effects;
+  @extend %custom-button;
 }
 
-.error-position {
-  margin-top: 4%;
+#dropdown-btn:hover, #dropdown-btn:focus, #dropdown-btn:active, {
+  @extend %no-special-effects;
+  @extend %custom-button-hover;
+  padding: 10px 140px 10px 10px;
+}
+
+#dropdown-menu {
+  @extend %no-special-effects;
+  @extend %custom-button;
   position: relative;
 }
 
-.item {
-  width: 20%;
+#dropdown-menu > li > a {
+  @extend %no-special-effects;
+  @extend %custom-button;
 }
 
-.layout {
-  flex:1;
+#dropdown-menu .dropdown-item {
+  @extend %no-special-effects;
+  @extend %custom-button;
+  display: block;
 }
 
-@media (max-width: 768px) {
-  .item {
-    width: 100%;
-  }
+#dropdown-menu .dropdown-item:hover {
+  @extend %custom-button-hover;
 }
 
-@media (max-width: 1200px) and (min-width: 768px) {
-  .item {
-    width: 50%;
-  }
-}
-
-.react-bootstrap-table-page-btns-ul {
-  margin: 0px 0px 20px 0px;
-}

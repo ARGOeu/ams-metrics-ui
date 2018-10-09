@@ -55,12 +55,12 @@ class ProjectsTab extends Reflux.Component {
 
     return (
       <div>
-        <Dropdown>
-          <Dropdown.Toggle className='dropdown-btn'>
+        <Dropdown id='dropdown-btn'>
+          <Dropdown.Toggle>
               <Glyphicon glyph='briefcase' />
             Projects
           </Dropdown.Toggle>
-          <Dropdown.Menu>
+          <Dropdown.Menu id='dropdown-menu'>
             <MenuItem>
               { this.renderProjects() }
             </MenuItem>

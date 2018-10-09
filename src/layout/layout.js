@@ -20,14 +20,6 @@ const NoMatch = () => {
 
 var t;
 
-var styles = {
-  bmMenuWrap: {
-    width: '250px',
-    borderTop: '1px solid white',
-    borderRight: '1px solid white'
-  }
-}
-
 class Layout extends Reflux.Component {
   constructor(props) {
     super(props);
@@ -70,14 +62,14 @@ class Layout extends Reflux.Component {
             <div onMouseMove={this.handleMouseMove.bind(this)} className='layout'>
                 {
                   (this.isSuperAdmin()) ?
-                    <Menu noOverlay styles={ styles }>
+                    <Menu noOverlay width={ 250 }>
                       <Link to="/projects">
                         <ProjectsTab />
                       </Link>
-                      <Link className="link" to="/statistics">
+                      <Link className="sidebar-tab" to="/statistics">
                         <Glyphicon glyph="stats" />Statistics
                       </Link>
-                      <Link className="link" to="/users">
+                      <Link className="sidebar-tab" to="/users">
                         <Glyphicon glyph="user" />Users
                       </Link>
                       <Button onClick={this.userLogout} className="btn-logout">
@@ -85,7 +77,7 @@ class Layout extends Reflux.Component {
                       </Button>
                     </Menu>
                     :
-                    <Menu noOverlay styles={ styles }>
+                    <Menu noOverlay width={ 250 }>
                       <Link to="/projects">
                         <ProjectsTab />
                       </Link>
@@ -95,7 +87,7 @@ class Layout extends Reflux.Component {
                     </Menu>
                 }
               <Grid>
-              <Row className="show-grid centered">
+              <Row className="show-grid content-position">
                 <Col xs={12} md={10} mdPush={2}>
                   <Route exact path="/projects/:project_name" component={ProjectsItem}/>
                   <Route exact path="/statistics" component={Stats}/>
