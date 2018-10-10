@@ -57,7 +57,7 @@ footer h4 {
   flex: 1; }
 
 .react-bootstrap-table-page-btns-ul {
-  margin: 0px 0px 20px 0px; }
+  margin: 0 0 20px; }
 
 /* Sidebar styles */
 .bm-menu-wrap {
@@ -104,6 +104,9 @@ span.bm-burger-bars {
 
 #dropdown-menu {
   position: relative; }
+
+#dropdown-menu > li > a {
+  white-space: normal; }
 
 #dropdown-menu .dropdown-item {
   display: block; }

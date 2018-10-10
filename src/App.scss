@@ -160,6 +160,7 @@ span.bm-burger-bars {
 #dropdown-menu > li > a {
   @extend %no-special-effects;
   @extend %custom-button;
+  white-space: normal;
 }
 
 #dropdown-menu .dropdown-item {
