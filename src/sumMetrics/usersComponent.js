@@ -2,7 +2,7 @@ import React from 'react';
 import sumMetricsActions from './sumMetricsActions.js';
 import sumMetricsStore from './sumMetricsStore.js';
 import Reflux from 'reflux';
-import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table-next';
 
 class Users extends Reflux.Component {
   constructor(props) {

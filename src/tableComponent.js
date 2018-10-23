@@ -1,6 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
-import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table-next';
 var numeral = require('numeral');
 
 const tablesInfo = {

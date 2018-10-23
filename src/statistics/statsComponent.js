@@ -2,7 +2,7 @@ import React from 'react';
 import statsActions from './statsActions.js';
 import statsStore from './statsStore.js';
 import Reflux from 'reflux';
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table-next';
 
 class Stats extends Reflux.Component {
   constructor(props) {
