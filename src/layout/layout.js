@@ -9,7 +9,7 @@ import Login from '../login/loginComponent.js';
 import SumMetrics from '../sumMetrics/sumMetricsComponent.js';
 import Reflux from 'reflux';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
-import { Grid, Row, Col, Button, Glyphicon } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { slide as Menu } from 'react-burger-menu'
 
 const NoMatch = () => {
@@ -67,13 +67,13 @@ class Layout extends Reflux.Component {
                         <ProjectsTab />
                       </Link>
                       <Link className="sidebar-tab" to="/statistics">
-                        <Glyphicon glyph="stats" />Statistics
+                        Statistics
                       </Link>
                       <Link className="sidebar-tab" to="/users">
-                        <Glyphicon glyph="user" />Users
+                        Users
                       </Link>
                       <Button onClick={this.userLogout} className="btn-logout">
-                        <Glyphicon glyph="log-out" />Log out
+                        Log out
                       </Button>
                     </Menu>
                     :
@@ -82,19 +82,19 @@ class Layout extends Reflux.Component {
                         <ProjectsTab />
                       </Link>
                       <Button onClick={this.userLogout} className="btn-logout">
-                        <Glyphicon glyph="log-out" />Log out
+                        Log out
                       </Button>
                     </Menu>
                 }
-              <Grid>
+              <Container>
               <Row className="show-grid content-position">
-                <Col xs={12} md={10} mdPush={2}>
+                <Col xs={12} md={10} md={{offset: 2}}>
                   <Route exact path="/projects/:project_name" component={ProjectsItem}/>
                   <Route exact path="/statistics" component={Stats}/>
                   <Route exact path="/users" component={Users}/>
                 </Col>
               </Row>
-              </Grid>
+              </Container>
             </div> : ''
         }
         <Route component={NoMatch}/>

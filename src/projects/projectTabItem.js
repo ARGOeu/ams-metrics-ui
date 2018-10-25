@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Tab } from 'react-bootstrap';
+import { Tab } from 'react-bootstrap';
 import RoleInfo from './roleInfo.js';
 
 

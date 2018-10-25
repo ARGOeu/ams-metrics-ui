@@ -2,7 +2,7 @@ import React from 'react';
 import loginStore from '../login/loginStore.js';
 import Reflux from 'reflux';
 import ProjectTabItem from './projectTabItem.js';
-import { Col, Row, Tab, Nav, NavItem } from 'react-bootstrap';
+import { Col, Row, Tab, Nav } from 'react-bootstrap';
 
 
 class ProjectsItem extends Reflux.Component {
@@ -40,7 +40,11 @@ class ProjectsItem extends Reflux.Component {
       } else if (role === "publisher") {
         roleLabel = "Publisher";
       }
-      return <NavItem eventKey={index} key={index}>{ roleLabel }</NavItem>;
+      return(
+        <Nav.Item>
+          <Nav.Link eventKey={index} key={index}>{ roleLabel }</Nav.Link>
+        </Nav.Item>
+      )
     });
   }
 
@@ -51,7 +55,7 @@ class ProjectsItem extends Reflux.Component {
         <Tab.Container defaultActiveKey={0} id="custom-tabs">
           <Row className="clearfix">
             <Col sm={12}>
-              <Nav bsStyle="tabs">
+              <Nav variant="tabs">
                 { this.renderTabs(roles) }
               </Nav>
             </Col>

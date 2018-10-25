@@ -4,7 +4,7 @@ import Reflux from 'reflux';
 import ProjectMenuItem from './projectMenuItem.js';
 import request from 'superagent';
 import { myConfig } from '../config.js';
-import { Dropdown, MenuItem, Glyphicon } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 
 
 class ProjectsTab extends Reflux.Component {
@@ -46,7 +46,7 @@ class ProjectsTab extends Reflux.Component {
   renderProjects() {
     let tabs = [];
     this.state.user.projects.forEach((project) => {
-      tabs.push(<ProjectMenuItem project={project} />);
+      tabs.push(<ProjectMenuItem project={project} key={project}/>);
     });
     return tabs;
   }
@@ -56,14 +56,13 @@ class ProjectsTab extends Reflux.Component {
     return (
       <div>
         <Dropdown id='dropdown-btn'>
-          <Dropdown.Toggle>
-              <Glyphicon glyph='briefcase' />
+          <Dropdown.Toggle id="dropdown-custom">
             Projects
           </Dropdown.Toggle>
           <Dropdown.Menu id='dropdown-menu'>
-            <MenuItem>
+            <Dropdown.Item>
               { this.renderProjects() }
-            </MenuItem>
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>

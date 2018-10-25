@@ -32,7 +32,7 @@ class Login extends Reflux.Component {
       setTimeout(function() { this.setState({show: false}); }.bind(this), 3000);
       return (
         <div>
-          <Alert bsStyle="danger" onDismiss={this.handleDismiss}>
+          <Alert variant="danger" onDismiss={this.handleDismiss}>
             <strong>Login Failed: </strong>You have not provided a valid token
           </Alert>
         </div>
@@ -50,8 +50,8 @@ class Login extends Reflux.Component {
         </div>
         <div className="content-position">
           <Form inline onSubmit={event => this.submitInputValue(event)}>
-            <FormControl bsSize="large" type="text" placeholder="Enter token" value={this.state.value} onChange={event => this.updateInputValue(event)}></FormControl>
-            <Button bsSize="large" bsStyle="primary" type="submit" value="Submit">Login</Button>
+            <FormControl variant="large" type="text" placeholder="Enter token" value={this.state.value} onChange={event => this.updateInputValue(event)}></FormControl>
+            <Button variant="large" variant="primary" type="submit" value="Submit">Login</Button>
           </Form>
         </div>
       </div>
