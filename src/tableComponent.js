@@ -1,104 +1,103 @@
 import React from 'react';
 import Reflux from 'reflux';
-import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table-next';
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
 var numeral = require('numeral');
 
 const tablesInfo = {
   projectMetrics: [
     {
-      key: 'name',
-      label: 'Project Name'
+      dataField: 'name',
+      textlabel: 'Project Name',
+      sort: true,
+      align: 'left',
     },
     {
-      key: 'number_of_topics',
-      label: 'Topics'
+      dataField: 'number_of_topics',
+      text: 'Topics',
+      sort: true,
+      align: 'left',
     },
     {
-      key: 'number_of_subscriptions',
-      label: 'Subscriptions'
+      dataField: 'number_of_subscriptions',
+      text: 'Subscriptions',
+      sort: true,
+      align: 'left',
     }
   ],
   'project.user': [
     {
-      key: 'username',
-      label: 'User Name'
+      dataField: 'username',
+      text: 'User Name',
+      sort: true,
+      align: 'left',
     },
     {
-      key: 'number_of_topics',
-      label: 'Topics'
+      dataField: 'number_of_topics',
+      text: 'Topics',
+      sort: true,
+      align: 'left',
     },
     {
-      key: 'number_of_subscriptions',
-      label: 'Subscriptions'
+      dataField: 'number_of_subscriptions',
+      text: 'Subscriptions',
+      sort: true,
+      align: 'left',
     }
   ],
   topicMetrics: [
     {
-      key: 'topicName',
-      label: 'Topic Name'
+      dataField: 'topicName',
+      text: 'Topic Name',
+      sort: true,
+      align: 'left',
     },
     {
-      key: 'number_of_subscriptions',
-      label: 'Subscriptions'
+      dataField: 'number_of_subscriptions',
+      text: 'Subscriptions',
+      sort: true,
+      align: 'left',
     },
     {
-      key: 'number_of_messages',
-      label: 'Messages'
+      dataField: 'number_of_messages',
+      text: 'Messages',
+      sort: true,
+      align: 'left',
     },
     {
-      key: 'number_of_bytes',
-      label: 'Bytes'
+      dataField: 'number_of_bytes',
+      text: 'Bytes',
+      sort: true,
+      align: 'left',
     }
   ],
   subscriptionMetrics: [
     {
-      key: 'subscriptionName',
-      label: 'Subscription Name'
+      dataField: 'subscriptionName',
+      text: 'Subscription Name',
+      sort: true,
+      align: 'left',
     },
     {
-      key: 'number_of_messages',
-      label: 'Messages'
+      dataField: 'number_of_messages',
+      text: 'Messages',
+      sort: true,
+      align: 'left',
     },
     {
-      key: 'number_of_bytes',
-      label: 'Bytes'
+      dataField: 'number_of_bytes',
+      text: 'Bytes',
+      sort: true,
+      align: 'left',
     }
   ]
 };
 
-function numberFormatter(cell, row) {
-  Object.keys(row).forEach((key) => {
-    if (key === 'number_of_messages') {
-      row[key] = numeral(row[key]).format('0,0');
-    } else if (key === 'number_of_bytes') {
-      if (!isNaN(row[key])) {
-      row[key] = numeral(row[key]).format('0.00b');
-      }
-    }
-  });
-  return cell;
-}
-
 class Table extends Reflux.Component {
-
-  renderCol(col) {
-    return (
-      <TableHeaderColumn dataField={col.key} dataSort={true} dataAlign='left' dataFormat={ numberFormatter } key={col.key}>{col.label}</TableHeaderColumn>
-    );
-  }
-
   render() {
-    const layout = (this.props.layout && this.props.layout === 'simple') ? false : true;
+    let columns = tablesInfo[this.props.tableType];
     return (
-      <div style={{marginTop:'5%'}}>
-        <BootstrapTable data={ this.props.data } striped={true} search={layout} pagination={layout} keyField={tablesInfo[this.props.tableType][0].key}>
-          {
-            tablesInfo[this.props.tableType].map((col) => {
-              return this.renderCol(col);
-            })
-          }
-        </BootstrapTable>
-      </div>
+      <BootstrapTable data={ this.props.data } columns={ columns } keyField='number_of_messages' pagination={ paginationFactory() }/>
   )}
 }
 

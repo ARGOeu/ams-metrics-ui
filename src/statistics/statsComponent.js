@@ -2,7 +2,29 @@ import React from 'react';
 import statsActions from './statsActions.js';
 import statsStore from './statsStore.js';
 import Reflux from 'reflux';
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table-next';
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+
+
+const columns = [
+  {
+    dataField: 'instanceName',
+    text: 'Instances',
+    sort: true,
+    align: 'left',
+  },
+  {
+    dataField: 'cpu_usage',
+    text: 'CPU usage %',
+    align: 'left',
+  },
+  {
+    dataField: 'memory_usage',
+    text: 'Memory usage %',
+    align: 'left',
+  }
+];
+
 
 class Stats extends Reflux.Component {
   constructor(props) {
@@ -17,11 +39,7 @@ class Stats extends Reflux.Component {
 
   render() {
     return (
-      <BootstrapTable data={ this.state.metrics } striped={true} search pagination>
-        <TableHeaderColumn dataField='instanceName' dataSort={true} isKey={true} dataAlign='left'>Instances</TableHeaderColumn>
-        <TableHeaderColumn dataField='cpu_usage' dataAlign='left'>CPU usage % </TableHeaderColumn>
-        <TableHeaderColumn dataField='memory_usage' dataAlign='left'>Memory usage % </TableHeaderColumn>
-      </BootstrapTable>
+      <BootstrapTable keyField='instanceName' data={ this.state.metrics } columns={ columns } striped pagination={ paginationFactory() }/>
     );
   }
 }
