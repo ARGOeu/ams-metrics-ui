@@ -9,8 +9,8 @@ class Header extends React.Component {
       <Navbar fixed="top">
           <Navbar.Brand>
             <Container>
-              <Row className="show-grid">
-                <Col md={1}>
+              <Row>
+                <Col md={1} md={{offset: 2}}>
                   <a href="/projects"><img src="../assets/argo-logo.png" alt="ARGO"/></a>
                 </Col>
               </Row>

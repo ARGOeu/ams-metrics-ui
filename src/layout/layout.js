@@ -87,8 +87,8 @@ class Layout extends Reflux.Component {
                     </Menu>
                 }
               <Container>
-              <Row className="show-grid content-position">
-                <Col xs={12} md={10} md={{offset: 2}}>
+              <Row className="content-position">
+                <Col xs={12} md={10} md={{offset: 1}}>
                   <Route exact path="/projects/:project_name" component={ProjectsItem}/>
                   <Route exact path="/statistics" component={Stats}/>
                   <Route exact path="/users" component={Users}/>

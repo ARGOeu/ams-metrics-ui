@@ -8,17 +8,17 @@ class Footer extends React.Component {
     <footer className="footer">
       <div className="footer-top">
         <Container>
-        <Row className="show-grid">
-          <Col md={3}>
+        <Row>
+          <Col md={4}>
             <p><img src="../assets/argo-logo.png" alt="Argo"/></p>
             <p>ARGO is a lightweight service for Service Level Monitoring designed for medium and large sized e-Infrastructures. 
             Learn more: <a href='http://argoeu.github.io/' style={{color: 'white'}}>http://argoeu.github.io/</a></p>
           </Col>
-          <Col md={{offset: 1}} md={3}>
+          <Col md={4}>
             <h4>ARGO AMS - Metrics</h4>
             <p>The ARGO Messaging Service (AMS) is a Publish/Subscribe Service, which implements the Google PubSub protocol. It provides an HTTP API that enables Users/Systems to implement message oriented service. This Services metrics on top of the AMS</p>
           </Col>
-          <Col md={{offset:1}} md={3}>
+          <Col md={4}>
             <h4>Open development </h4>
             <p>We follow an open development process. All the repositories of ARGO are hosted on Github under the ARGOeu organization.</p>
             <h4>Contact Us</h4>
