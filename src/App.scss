@@ -89,7 +89,6 @@ footer h4 {
   padding: 3.5em 0.5em 0;
   font-size: 1.15em;
 }
-
 .bm-burger-button {
   position: fixed;
   top: 15px;
@@ -124,11 +123,13 @@ span.bm-burger-bars {
   @extend %no-special-effects;
   @extend %custom-button;
   margin-top: 2.5em;
+  transition: unset !important;
 }
 
 .btn-logout:hover {
   @extend %custom-button-hover;
-  padding: 10px 155px 10px 10px;
+  padding: 10px 165px 10px 10px;
+  transition: unset !important;
 }
 
 .sidebar-tab, .sidebar-tab:visited, {
@@ -140,27 +141,25 @@ span.bm-burger-bars {
   @extend %custom-button-hover;
 }
 
-#dropdown-btn, #dropdown-btn:visited {
+#dropdown-custom, #dropdown-custom:visited {
   @extend %no-special-effects;
   @extend %custom-button;
+  transition: unset !important;
 }
 
-#dropdown-btn:hover, #dropdown-btn:focus, #dropdown-btn:active, {
+#dropdown-custom:hover, #dropdown-custom:focus, #dropdown-custom:active, {
   @extend %no-special-effects;
   @extend %custom-button-hover;
-  padding: 10px 140px 10px 10px;
+  padding: 10px 148px 10px 10px;
+  transition: unset !important;
 }
 
 #dropdown-menu {
   @extend %no-special-effects;
   @extend %custom-button;
-  position: relative;
-}
-
-#dropdown-menu > li > a {
-  @extend %no-special-effects;
-  @extend %custom-button;
-  white-space: normal;
+  position: relative !important;
+  transform: none !important;
+  will-change: auto !important;
 }
 
 #dropdown-menu .dropdown-item {
@@ -169,7 +168,7 @@ span.bm-burger-bars {
   display: block;
 }
 
-#dropdown-menu .dropdown-item:hover {
+#dropdown-menu > a .dropdown-item:hover {
   @extend %custom-button-hover;
 }
 

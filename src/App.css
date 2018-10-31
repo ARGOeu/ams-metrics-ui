@@ -1,17 +1,17 @@
 /*Theme colors*/
-.btn-logout, .sidebar-tab:hover, .sidebar-tab:focus, .sidebar-tab:active, #dropdown-btn, #dropdown-btn:visited, #dropdown-btn:hover, #dropdown-btn:focus, #dropdown-btn:active, #dropdown-menu, #dropdown-menu > li > a, #dropdown-menu .dropdown-item {
+.btn-logout, .sidebar-tab:hover, .sidebar-tab:focus, .sidebar-tab:active, #dropdown-custom, #dropdown-custom:visited, #dropdown-custom:hover, #dropdown-custom:focus, #dropdown-custom:active, #dropdown-menu, #dropdown-menu .dropdown-item {
   background-image: none;
   box-shadow: none;
   text-decoration: none;
   text-shadow: none; }
 
-.btn-logout, .sidebar-tab, .sidebar-tab:visited, #dropdown-btn, #dropdown-btn:visited, #dropdown-menu, #dropdown-menu > li > a, #dropdown-menu .dropdown-item {
+.btn-logout, .sidebar-tab, .sidebar-tab:visited, #dropdown-custom, #dropdown-custom:visited, #dropdown-menu, #dropdown-menu .dropdown-item {
   background-color: #123f7c;
   border: none;
   color: #c2c7d0;
   padding: 10px; }
 
-.btn-logout:hover, .sidebar-tab:hover, .sidebar-tab:focus, .sidebar-tab:active, #dropdown-btn:hover, #dropdown-btn:focus, #dropdown-btn:active, #dropdown-menu .dropdown-item:hover {
+.btn-logout:hover, .sidebar-tab:hover, .sidebar-tab:focus, .sidebar-tab:active, #dropdown-custom:hover, #dropdown-custom:focus, #dropdown-custom:active, #dropdown-menu > a .dropdown-item:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: .25rem;
   color: #ffffff; }
@@ -94,19 +94,24 @@ span.bm-burger-bars {
   padding-right: 0.5em; }
 
 .btn-logout {
-  margin-top: 2.5em; }
+  margin-top: 2.5em;
+  transition: unset !important; }
 
 .btn-logout:hover {
-  padding: 10px 155px 10px 10px; }
+  padding: 10px 165px 10px 10px;
+  transition: unset !important; }
 
-#dropdown-btn:hover, #dropdown-btn:focus, #dropdown-btn:active {
-  padding: 10px 140px 10px 10px; }
+#dropdown-custom, #dropdown-custom:visited {
+  transition: unset !important; }
+
+#dropdown-custom:hover, #dropdown-custom:focus, #dropdown-custom:active {
+  padding: 10px 148px 10px 10px;
+  transition: unset !important; }
 
 #dropdown-menu {
-  position: relative; }
-
-#dropdown-menu > li > a {
-  white-space: normal; }
+  position: relative !important;
+  transform: none !important;
+  will-change: auto !important; }
 
 #dropdown-menu .dropdown-item {
   display: block; }
