@@ -60,14 +60,14 @@ footer h4 {
 
 /* Layout styles */
 .content-position {
-  text-align: center;
-  margin-top: 10%;
+  margin-top: 15%;
   margin-bottom: 5%;
 }
 
 .error-position {
-  margin-top: 4%;
-  position: relative;
+  margin-top: 6%;
+  position: absolute;
+  width: -webkit-fill-available;
 }
 
 .layout {

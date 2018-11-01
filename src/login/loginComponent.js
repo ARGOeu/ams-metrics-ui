@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormControl, Button, Form, Alert } from 'react-bootstrap';
+import { FormControl, Button, Form, Alert, Container, Row, Col } from 'react-bootstrap';
 import loginActions from './loginActions.js';
 import loginStore from './loginStore.js';
 import Reflux from 'reflux';
@@ -31,7 +31,7 @@ class Login extends Reflux.Component {
     if (this.state.show) {
       setTimeout(function() { this.setState({show: false}); }.bind(this), 3000);
       return (
-        <div>
+        <div className="error-position">
           <Alert variant="danger" onDismiss={this.handleDismiss}>
             <strong>Login Failed: </strong>You have not provided a valid token
           </Alert>
@@ -45,15 +45,17 @@ class Login extends Reflux.Component {
   renderForm() {
     return (
       <div>
-        <div className="error-position">
           { (this.state.error) ? this.renderShowError() : '' }
-        </div>
-        <div className="content-position">
-          <Form inline onSubmit={event => this.submitInputValue(event)}>
-            <FormControl variant="large" type="text" placeholder="Enter token" value={this.state.value} onChange={event => this.updateInputValue(event)}></FormControl>
-            <Button variant="large" variant="primary" type="submit" value="Submit">Login</Button>
-          </Form>
-        </div>
+        <Container>
+          <Row>
+            <Col md={{ span: 4, offset: 4 }} className="content-position">
+              <Form inline onSubmit={event => this.submitInputValue(event)}>
+                <FormControl variant="large" type="text" placeholder="Enter token" value={this.state.value} onChange={event => this.updateInputValue(event)}></FormControl>
+                <Button variant="large" variant="primary" type="submit" value="Submit">Login</Button>
+              </Form>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
