@@ -63,14 +63,17 @@ class Layout extends Reflux.Component {
                 {
                   (this.isSuperAdmin()) ?
                     <Menu noOverlay width={ 250 }>
+                      <Link className="sidebar-tab" to="/dashboard">
+                        Dashboard
+                      </Link>
                       <Link to="/projects">
                         <ProjectsTab />
                       </Link>
-                      <Link className="sidebar-tab" to="/statistics">
-                        Statistics
-                      </Link>
                       <Link className="sidebar-tab" to="/users">
                         Users
+                      </Link>
+                      <Link className="sidebar-tab" to="/statistics">
+                        Statistics
                       </Link>
                       <Button onClick={this.userLogout} className="btn-logout">
                         Log out
@@ -89,6 +92,7 @@ class Layout extends Reflux.Component {
               <Container>
               <Row className="content-position">
                 <Col xs={12} md={10} md={{offset: 1}}>
+                  <Route exact path="/dashboard" component={SumMetrics}/>
                   <Route exact path="/projects/:project_name" component={ProjectsItem}/>
                   <Route exact path="/statistics" component={Stats}/>
                   <Route exact path="/users" component={Users}/>
