@@ -3,7 +3,8 @@ import { FormControl, Button, Form, Alert, Container, Row, Col } from 'react-boo
 import loginActions from './loginActions.js';
 import loginStore from './loginStore.js';
 import Reflux from 'reflux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Switch, Route } from 'react-router-dom';
+import ProjectsItem from '../projects/projectsItem.js';
 
 class Login extends Reflux.Component {
   constructor(props) {
@@ -13,7 +14,17 @@ class Login extends Reflux.Component {
   }
 
   getDestination() {
-    return '/projects';
+    if (this.state.user.service_roles.length === 0) {
+      let firstProjectName = this.state.user.projects[0].project;
+      return (
+        <Switch>
+          <Redirect from="/login" to={`/projects/${firstProjectName}`}/>
+          <Route path={`/projects/${firstProjectName}`} component={ProjectsItem}/>
+        </Switch>
+      )
+    } else {
+      return (<Redirect to="/dashboard" />);
+    }
   }
 
   componentDidMount() {
@@ -64,7 +75,7 @@ class Login extends Reflux.Component {
     const loggedIn = (this.state.user && 'name' in this.state.user && this.state.value) ? true : false;
     return (
       <div className='layout'>
-      { (loggedIn) ? <Redirect to={this.getDestination()} /> : this.renderForm() }
+      { (loggedIn) ? this.getDestination() : this.renderForm() }
       </div>
     )
   }
