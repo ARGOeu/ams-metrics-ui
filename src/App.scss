@@ -124,11 +124,12 @@ span.bm-burger-bars {
   @extend %custom-button;
   margin-top: 2.5em;
   transition: unset !important;
+  font-size: 1.0em;
 }
 
 .btn-logout:hover {
   @extend %custom-button-hover;
-  padding: 10px 165px 10px 10px;
+  padding: 10px 158px 10px 10px;
   transition: unset !important;
 }
 
@@ -145,12 +146,13 @@ span.bm-burger-bars {
   @extend %no-special-effects;
   @extend %custom-button;
   transition: unset !important;
+  font-size: 1.0em;
 }
 
 #dropdown-custom:hover, #dropdown-custom:focus, #dropdown-custom:active, {
   @extend %no-special-effects;
   @extend %custom-button-hover;
-  padding: 10px 148px 10px 10px;
+  padding: 10px 138px 10px 10px;
   transition: unset !important;
 }
 
