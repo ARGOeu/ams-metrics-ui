@@ -1,9 +1,11 @@
 /*Theme colors*/
+$black: #000000;
 $white: #ffffff;
 $white-transparent: rgba(255,255,255,.1);
-$chathams-blue: #123f7c;
-$danube: #538bc6;
-$ghost: #c2c7d0;
+$light-grey: #d3d3d3;
+$primary-blue: #0e3d7e;
+$secondary-blue: #538bc6;
+$complementary-orange: #ffa800;
 
 %no-special-effects {
   background-image: none;
@@ -13,9 +15,9 @@ $ghost: #c2c7d0;
 }
 
 %custom-button {
-  background-color: $chathams-blue;
+  background-color: $primary-blue;
   border: none;
-  color: $ghost;
+  color: $light-grey;
   padding: 10px;
 }
 
@@ -33,12 +35,12 @@ $ghost: #c2c7d0;
 
 /* Header styles */
 .navbar {
-  background: $chathams-blue;
+  background: $primary-blue;
 }
 
 /* Footer styles */
 footer {
-  background-color: $danube;
+  background-color: $secondary-blue;
   color: $white;
   text-align: left;
 }
@@ -52,7 +54,7 @@ footer h4 {
 }
 
 .footer-bottom {
-  background-color: $chathams-blue;
+  background-color: $primary-blue;
   height: 50px;
   line-height: 50px;
   text-align: center;
@@ -85,7 +87,7 @@ footer h4 {
 }
 
 .bm-menu {
-  background: $chathams-blue;
+  background: $primary-blue;
   padding: 3.5em 0.5em 0;
   font-size: 1.15em;
 }
@@ -103,7 +105,7 @@ span.bm-burger-bars {
 }
 
 .bm-burger-bars {
-  background: $ghost;
+  background: $light-grey;
 }
 
 .bm-cross-button {
@@ -112,7 +114,7 @@ span.bm-burger-bars {
 }
 
 .bm-cross {
-  background: $ghost;
+  background: $light-grey;
 }
 
 .glyphicon {
