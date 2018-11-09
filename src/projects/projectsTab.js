@@ -5,6 +5,8 @@ import ProjectMenuItem from './projectMenuItem.js';
 import request from 'superagent';
 import { myConfig } from '../config.js';
 import { Dropdown } from 'react-bootstrap';
+import { FaBriefcase } from 'react-icons/fa';
+import { IconContext } from "react-icons";
 
 
 class ProjectsTab extends Reflux.Component {
@@ -57,6 +59,9 @@ class ProjectsTab extends Reflux.Component {
       <div>
         <Dropdown id='dropdown-btn'>
           <Dropdown.Toggle id="dropdown-custom">
+            <IconContext.Provider value={{ className: "sidebar-icon" }}>
+              <FaBriefcase />
+            </IconContext.Provider>
             Projects
           </Dropdown.Toggle>
           <Dropdown.Menu id='dropdown-menu'>

@@ -96,8 +96,8 @@ span.bm-burger-bars {
 .bm-cross {
   background: #d3d3d3; }
 
-.glyphicon {
-  padding-right: 0.5em; }
+.sidebar-icon {
+  margin: 0 0.7rem 0.3rem 0; }
 
 .btn-logout {
   margin-top: 2.5em;
@@ -105,7 +105,7 @@ span.bm-burger-bars {
   font-size: 1.0em; }
 
 .btn-logout:hover {
-  padding: 10px 158px 10px 10px;
+  padding: 10px 130px 10px 10px;
   transition: unset !important; }
 
 #dropdown-custom, #dropdown-custom:visited {
@@ -113,7 +113,7 @@ span.bm-burger-bars {
   font-size: 1.0em; }
 
 #dropdown-custom:hover, #dropdown-custom:focus, #dropdown-custom:active {
-  padding: 10px 138px 10px 10px;
+  padding: 10px 108px 10px 10px;
   transition: unset !important; }
 
 #dropdown-menu {

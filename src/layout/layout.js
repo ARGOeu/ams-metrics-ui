@@ -11,6 +11,11 @@ import Reflux from 'reflux';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { slide as Menu } from 'react-burger-menu'
+import { FaUsers } from 'react-icons/fa';
+import { FaChartBar } from 'react-icons/fa';
+import { FaSignOutAlt } from 'react-icons/fa';
+import { FaTachometerAlt } from 'react-icons/fa';
+import { IconContext } from "react-icons";
 
 const NoMatch = () => {
   return (
@@ -64,18 +69,30 @@ class Layout extends Reflux.Component {
                   (this.isSuperAdmin()) ?
                     <Menu noOverlay width={ 250 }>
                       <Link className="sidebar-tab" to="/dashboard">
+                        <IconContext.Provider value={{ className: "sidebar-icon" }}>
+                          <FaTachometerAlt />
+                        </IconContext.Provider>
                         Dashboard
                       </Link>
                       <Link to="/projects">
                         <ProjectsTab />
                       </Link>
                       <Link className="sidebar-tab" to="/users">
+                        <IconContext.Provider value={{ className: "sidebar-icon" }}>
+                          <FaUsers />
+                        </IconContext.Provider>
                         Users
                       </Link>
                       <Link className="sidebar-tab" to="/statistics">
+                        <IconContext.Provider value={{ className: "sidebar-icon" }}>
+                          <FaChartBar />
+                        </IconContext.Provider>
                         Statistics
                       </Link>
                       <Button onClick={this.userLogout} className="btn-logout">
+                        <IconContext.Provider value={{ className: "sidebar-icon" }}>
+                          <FaSignOutAlt />
+                        </IconContext.Provider>
                         Log out
                       </Button>
                     </Menu>
@@ -85,6 +102,9 @@ class Layout extends Reflux.Component {
                         <ProjectsTab />
                       </Link>
                       <Button onClick={this.userLogout} className="btn-logout">
+                        <IconContext.Provider value={{ className: "sidebar-icon" }}>
+                          <FaSignOutAlt />
+                        </IconContext.Provider>
                         Log out
                       </Button>
                     </Menu>

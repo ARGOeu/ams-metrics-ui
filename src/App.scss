@@ -124,8 +124,8 @@ span.bm-burger-bars {
   background: $light-grey;
 }
 
-.glyphicon {
-  padding-right: 0.5em;
+.sidebar-icon {
+  margin: 0 0.7rem 0.3rem 0;
 }
 
 .btn-logout {
@@ -138,7 +138,7 @@ span.bm-burger-bars {
 
 .btn-logout:hover {
   @extend %custom-button-hover;
-  padding: 10px 158px 10px 10px;
+  padding: 10px 130px 10px 10px;
   transition: unset !important;
 }
 
@@ -161,7 +161,7 @@ span.bm-burger-bars {
 #dropdown-custom:hover, #dropdown-custom:focus, #dropdown-custom:active, {
   @extend %no-special-effects;
   @extend %custom-button-hover;
-  padding: 10px 138px 10px 10px;
+  padding: 10px 108px 10px 10px;
   transition: unset !important;
 }
 
