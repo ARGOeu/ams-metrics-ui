@@ -27,6 +27,13 @@ $complementary-orange: #ffa800;
   color: $white;
 }
 
+%info-box-details {
+  font-size: 1.5rem;
+  padding-left: 1rem;
+  color: $black;
+  display: block;
+}
+
 .App {
   display: flex;
   min-height: 100vh;
@@ -176,3 +183,34 @@ span.bm-burger-bars {
   @extend %custom-button-hover;
 }
 
+.info-box {
+  width: 15rem;
+  height: 6rem;
+  border-radius: 0.1rem;
+  box-shadow: 0 1px 1px 1px;
+  color: $light-grey;
+  margin: 1rem;
+}
+
+.info-box-icon {
+  width: 6rem;
+  height: 6rem;
+  background-color: $complementary-orange;
+  color: white;
+  padding: 1rem;
+  display: block;
+  float: left;
+}
+
+.info-box-content {
+  display: inline-block;
+}
+
+.info-box-text {
+  @extend %info-box-details;
+  font-weight: bold;
+}
+
+.info-box-title {
+  @extend %info-box-details;
+}
