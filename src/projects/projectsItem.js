@@ -41,7 +41,7 @@ class ProjectsItem extends Reflux.Component {
         roleLabel = "Publisher";
       }
       return(
-        <Nav.Item>
+        <Nav.Item key={index}>
           <Nav.Link eventKey={index} key={index}>{ roleLabel }</Nav.Link>
         </Nav.Item>
       )
@@ -60,7 +60,7 @@ class ProjectsItem extends Reflux.Component {
               </Nav>
             </Col>
             <Col sm={12}>
-              <Tab.Content animation={false}>
+              <Tab.Content animation="false">
                { tabs }
               </Tab.Content>
             </Col>

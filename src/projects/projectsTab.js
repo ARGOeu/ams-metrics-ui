@@ -48,7 +48,7 @@ class ProjectsTab extends Reflux.Component {
   renderProjects() {
     let tabs = [];
     this.state.user.projects.forEach((project) => {
-      tabs.push(<ProjectMenuItem project={project} key={project}/>);
+      tabs.push(<ProjectMenuItem project={project} key={project.project}/>);
     });
     return tabs;
   }
