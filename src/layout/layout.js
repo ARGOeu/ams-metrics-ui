@@ -32,10 +32,6 @@ class Layout extends Reflux.Component {
     this.store = loginStore;
   }
 
-  userLogged() {
-    return (this.state.user && this.state.user.token) ? true : false;
-  }
-
   userLogout() {
     loginActions.logout();
     window.location = '/login';
@@ -64,7 +60,7 @@ class Layout extends Reflux.Component {
       <Switch>
         <Route path="/login" component={Login} />
         {
-          (this.userLogged()) ?
+          (this.state.loggedIn) ?
             <div onMouseMove={this.handleMouseMove.bind(this)} className='layout'>
                 {
                   (this.isSuperAdmin()) ?

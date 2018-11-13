@@ -12,6 +12,7 @@ class LoginStore extends Reflux.Store {
       value: '',
       userInfo: [],
       user: {},
+      loggedIn: false,
       isNotAdmin: false,
       error: false,
       show: false,
@@ -23,24 +24,25 @@ class LoginStore extends Reflux.Store {
 
     let userRole = `${myConfig.usersUrl}:byToken/${value}`;
 
-      request
-        .get(userRole)
-        .set('Content-Type', 'application/json')
-        .query({ key: myConfig.superAdmin })
-        .end((err, res) => {
-          if(err && err.status === 404) {
-	    this.setState({ error : true });
-	    this.setState({ value : '' });
-	    this.setState({ show : true });
-	    throw err;
-	  }
-          this.setState({ user: res.body });
-          sessionStorage.setItem('token', value);
-          this.setState({ userInfo: ('projects' in res.body) ? res.body.projects : [] });
-          if(res.body.service_roles.length === 0) {
-            this.setState({ isNotAdmin : true });
-          }
-        });
+    request
+      .get(userRole)
+      .set('Content-Type', 'application/json')
+      .query({ key: myConfig.superAdmin })
+      .end((err, res) => {
+        if(err && err.status === 404) {
+          this.setState({ error : true });
+          this.setState({ value : '' });
+          this.setState({ show : true });
+          throw err;
+        }
+        this.setState({ user: res.body });
+        sessionStorage.setItem('token', value);
+        this.setState({ userInfo: ('projects' in res.body) ? res.body.projects : [] });
+        this.setState({ loggedIn: true })
+        if(res.body.service_roles.length === 0) {
+          this.setState({ isNotAdmin : true });
+        }
+    });
   }
 
   onLogout() {

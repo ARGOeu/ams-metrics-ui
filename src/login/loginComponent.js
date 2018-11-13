@@ -72,10 +72,9 @@ class Login extends Reflux.Component {
   }
 
   render() {
-    const loggedIn = (this.state.user && 'name' in this.state.user && this.state.value) ? true : false;
     return (
       <div className='layout'>
-      { (loggedIn) ? this.renderDestination() : this.renderForm() }
+      { (this.state.loggedIn) ? this.renderDestination() : this.renderForm() }
       </div>
     )
   }
