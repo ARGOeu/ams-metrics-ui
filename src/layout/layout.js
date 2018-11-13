@@ -1,5 +1,6 @@
 import React from 'react';
 import ProjectsTab from '../projects/projectsTab.js';
+import ProjectsTable from '../projects/projectsTable.js';
 import ProjectsItem from '../projects/projectsItem.js';
 import Stats from '../statistics/statsComponent.js';
 import Users from '../sumMetrics/usersComponent.js';
@@ -113,6 +114,7 @@ class Layout extends Reflux.Component {
               <Row className="content-position">
                 <Col xs={12} md={10} md={{offset: 1}}>
                   <Route exact path="/dashboard" component={SumMetrics}/>
+                  <Route exact path="/projects" component={ProjectsTable}/>
                   <Route exact path="/projects/:project_name" component={ProjectsItem}/>
                   <Route exact path="/statistics" component={Stats}/>
                   <Route exact path="/users" component={Users}/>

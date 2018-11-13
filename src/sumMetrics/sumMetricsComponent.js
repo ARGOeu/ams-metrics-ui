@@ -1,6 +1,7 @@
 import React from 'react';
 import sumMetricsActions from './sumMetricsActions.js';
 import sumMetricsStore from './sumMetricsStore.js';
+import ProjectsTable from '../projects/projectsTable.js';
 import Reflux from 'reflux';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -51,6 +52,11 @@ class SumMetrics extends Reflux.Component {
                   </div>
                 </Link>
               </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <ProjectsTable />
             </Col>
           </Row>
         </Container>

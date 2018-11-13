@@ -130,7 +130,7 @@ span.bm-burger-bars {
   border-radius: 0.1rem;
   box-shadow: 0 1px 1px 1px;
   color: #d3d3d3;
-  margin: 1rem; }
+  margin: 1rem 1rem 3rem 1rem; }
 
 .info-box-icon {
   width: 6rem;
@@ -146,3 +146,17 @@ span.bm-burger-bars {
 
 .info-box-text {
   font-weight: bold; }
+
+.pills, .pills:visited {
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 0.2rem;
+  margin: 0.3rem;
+  padding: 0.4rem;
+  text-decoration: none;
+  min-width: 12rem; }
+
+.pills:hover, .pills:focus, .pills:active {
+  background-color: #0e3d7e;
+  color: #ffffff;
+  text-decoration: none; }

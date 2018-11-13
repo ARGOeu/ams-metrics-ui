@@ -189,7 +189,7 @@ span.bm-burger-bars {
   border-radius: 0.1rem;
   box-shadow: 0 1px 1px 1px;
   color: $light-grey;
-  margin: 1rem;
+  margin: 1rem 1rem 3rem 1rem;
 }
 
 .info-box-icon {
@@ -213,4 +213,20 @@ span.bm-burger-bars {
 
 .info-box-title {
   @extend %info-box-details;
+}
+
+.pills, .pills:visited {
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 0.2rem;
+  margin: 0.3rem;
+  padding: 0.4rem;
+  text-decoration : none;
+  min-width: 12rem;
+}
+
+.pills:hover, .pills:focus, .pills:active, {
+  background-color: $primary-blue;
+  color: $white;
+  text-decoration : none;
 }
