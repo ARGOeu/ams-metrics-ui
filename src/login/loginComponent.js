@@ -13,7 +13,7 @@ class Login extends Reflux.Component {
     this.handleDismiss = this.handleDismiss.bind(this);
   }
 
-  getDestination() {
+  renderDestination() {
     if (this.state.user.service_roles.length === 0) {
       let firstProjectName = this.state.user.projects[0].project;
       return (
@@ -75,7 +75,7 @@ class Login extends Reflux.Component {
     const loggedIn = (this.state.user && 'name' in this.state.user && this.state.value) ? true : false;
     return (
       <div className='layout'>
-      { (loggedIn) ? this.getDestination() : this.renderForm() }
+      { (loggedIn) ? this.renderDestination() : this.renderForm() }
       </div>
     )
   }
