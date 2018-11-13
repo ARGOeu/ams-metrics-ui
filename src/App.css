@@ -19,8 +19,7 @@
 .info-box-text, .info-box-title {
   font-size: 1.5rem;
   padding-left: 1rem;
-  color: #000000;
-  display: block; }
+  color: #000000; }
 
 .App {
   display: flex;
@@ -146,6 +145,9 @@ span.bm-burger-bars {
 
 .info-box-text {
   font-weight: bold; }
+
+.info-box-title {
+  margin-bottom: 0rem; }
 
 .pills, .pills:visited {
   display: inline-block;

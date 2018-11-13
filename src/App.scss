@@ -31,7 +31,6 @@ $complementary-orange: #ffa800;
   font-size: 1.5rem;
   padding-left: 1rem;
   color: $black;
-  display: block;
 }
 
 .App {
@@ -213,6 +212,7 @@ span.bm-burger-bars {
 
 .info-box-title {
   @extend %info-box-details;
+  margin-bottom: 0rem;
 }
 
 .pills, .pills:visited {

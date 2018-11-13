@@ -27,30 +27,26 @@ class SumMetrics extends Reflux.Component {
       <div>
         <Container>
           <Row>
-            <Col md={3}>
+            <Col md={4}>
               <div className="info-box">
-                <Link to={`/users`}>
                   <IconContext.Provider value={{ className: "info-box-icon" }}>
-                    <span><FaUsers /></span>
+                    <Link to={`/users`}><FaUsers /></Link>
                   </IconContext.Provider>
                   <div className="info-box-content">
-                    <span className="info-box-title">Users</span>
-                    <span className="info-box-text"> { this.state.users.length } </span>
+                    <p className="info-box-title">Users</p>
+                    <p className="info-box-text"> { this.state.users.length } </p>
                   </div>
-                </Link>
               </div>
             </Col>
-            <Col md={3}>
+            <Col md={4}>
               <div className="info-box">
-                <Link to={`/projects`}>
                   <IconContext.Provider value={{ className: "info-box-icon" }}>
-                    <span><FaBriefcase /></span>
+                    <Link to={`/projects`}><FaBriefcase /></Link>
                   </IconContext.Provider>
                   <div className="info-box-content">
-                    <span className="info-box-title">Projects</span>
-                    <span className="info-box-text"> { this.state.projects.length } </span>
+                    <p className="info-box-title">Projects</p>
+                    <p className="info-box-text"> { this.state.projects.length } </p>
                   </div>
-                </Link>
               </div>
             </Col>
           </Row>
