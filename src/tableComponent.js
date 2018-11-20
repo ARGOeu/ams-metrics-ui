@@ -97,11 +97,11 @@ function byteFormatter(cell, row) {
 class Table extends Reflux.Component {
   render() {
     let columns = tablesInfo[this.props.tableType];
-    const simpleTable = (this.props.tableType === 'projectMetrics') ? true : false;
+    const { tableType } = this.props;
     return (
       <div>
       {
-        (simpleTable) ?
+        (tableType ===  'projectMetrics') ?
         <BootstrapTable data={ this.props.data } columns={ columns } keyField='number_of_messages' bordered={ false }/> :
         <ToolkitProvider
           keyField="number_of_metrics"
