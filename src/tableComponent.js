@@ -97,27 +97,34 @@ function byteFormatter(cell, row) {
 class Table extends Reflux.Component {
   render() {
     let columns = tablesInfo[this.props.tableType];
+    const simpleTable = (this.props.tableType === 'projectMetrics') ? true : false;
     return (
-      <ToolkitProvider
-        keyField="number_of_metrics"
-        data={ this.props.data }
-        columns={ columns }
-        search
-      >
-        {
-          props => (
-            <div>
-              <SearchBar { ...props.searchProps } />
-              <hr />
-              <BootstrapTable
-                { ...props.baseProps }
-                pagination={ paginationFactory() }
-              />
-            </div>
-          )
-        }
-      </ToolkitProvider>
-  )}
+      <div>
+      {
+        (simpleTable) ?
+        <BootstrapTable data={ this.props.data } columns={ columns } keyField='number_of_messages' bordered={ false }/> :
+        <ToolkitProvider
+          keyField="number_of_metrics"
+          data={ this.props.data }
+          columns={ columns }
+          search
+        >
+          {
+            props => (
+              <div>
+                <SearchBar { ...props.searchProps } />
+                <hr />
+                <BootstrapTable
+                  { ...props.baseProps }
+                  pagination={ paginationFactory() }
+                />
+              </div>
+            )
+          }
+        </ToolkitProvider>
+      }
+      </div>
+    )}
 }
 
 export default Table;
