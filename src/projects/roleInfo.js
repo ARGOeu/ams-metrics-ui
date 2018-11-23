@@ -27,7 +27,7 @@ class RoleInfo extends Reflux.Component {
 
     if (role === "project_admin" || role === "service_admin") {
       let metrics = [];
-      metrics.push(<Table tableType='projectMetrics' layout='simple' data={[this.state.projectMetric]}/>);
+      metrics.push(<Table tableType='projectMetrics' data={[this.state.projectMetric]}/>);
 
       Object.keys(this.state.defaultMetrics).forEach((metric_type) => {
         metrics.push(<Table tableType={metric_type} data={this.state.defaultMetrics[metric_type]}/>)
